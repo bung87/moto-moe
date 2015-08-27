@@ -1,0 +1,5 @@
+#dependency links
+git+https://github.com/bung87/django-js-reverse
+git+https://github.com/alex/django-taggit
+git+https://github.com/marazmiki/django-comments-threaded
+git+https://github.com/bung87/haystack-rqueue

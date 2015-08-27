@@ -1,0 +1,23 @@
+include requirements.txt
+include dependency_links.txt
+include Gruntfile.js
+include package.json
+
+graft moto/static/css
+graft moto/static/font
+graft moto/templates
+graft moto/locale
+graft moto/static/jquery-timeago-1.4.1/locales
+recursive-include moto/static/jquery-timeago-1.4.1/locales/ *.js
+
+recursive-include moto/static *.min.js *.map *.min.css *.jpg *.png *.gif *.ttf *.woff *.woff2 *.svg *.eot *.ico
+
+prune moto/static/selectize.js-0.12.1/examples/
+prune moto/static/js/underscore-1.8.3/docs/
+prune moto/static/js/underscore-1.8.3/test/
+prune moto/static/js/masonry-3.2.3/sandbox/
+prune moto/static/js/imagesloaded-3.1.8/test/
+prune moto/static/js/hammer.js-2.0.4/tests/
+prune moto/media/
+prune moto/static/js/imagesloaded-3.1.8/test/
+prune moto/static/js/underscore-1.8.3/docs/

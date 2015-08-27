@@ -1,0 +1,684 @@
+{% load i18n account socialaccount %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Remove Tap Highlight on Windows Phone IE -->
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="theme-color" content="#f48fb1">
+    <title>元萌</title>
+    <link rel="shortcut icon" href="{{STATIC_URL}}favicon.ico" type="image/x-icon">
+    <!-- Compiled and minified CSS -->
+    {% if debug %}
+    <!--<link rel="stylesheet" href="{{STATIC_URL}}semantic/semantic.css">-->
+    <!--<link rel="stylesheet" href="{{STATIC_URL}}css/styles.css?v=dsf">-->
+    <!--<link rel="stylesheet" href="{{STATIC_URL}}css/waves.css">-->
+    <!--<link rel="stylesheet" href="{{STATIC_URL}}css/materialize-icons.css">-->
+    <!--<link rel="stylesheet" href="{{STATIC_URL}}css/materialize-colors.css">-->
+    <!--<link rel="stylesheet" href="{{STATIC_URL}}jquery.snsshare.js/css/style.css">-->
+    <!--<link rel="stylesheet" href="{{STATIC_URL}}selectize.js-0.12.1/dist/css/selectize.bootstrap3.css">-->
+    <!--<link rel="stylesheet" href="{{STATIC_URL}}css/jquery.Jcrop.min.css" type="text/css" />-->
+    <link rel="stylesheet" href="{{STATIC_URL}}css/styles.min.css?v=1">
+    {% else %}
+     <link rel="stylesheet" href="{{STATIC_URL}}css/styles.min.css?v=1">
+    {% endif %}
+</head>
+    <script src="{% url 'js_reverse' %}" type="text/javascript"></script>
+    <script data-main="{{STATIC_URL}}js/app.{% ifnotequal debug True %}min.{% endifnotequal %}js?v=1" src="{{STATIC_URL}}js/require.{% ifnotequal debug True %}min.{% endifnotequal %}js"></script>
+    <script>
+    var requestData={
+        user:{{user_json|safe}}
+    };
+    var site={
+        lang:'{{request.LANGUAGE_CODE}}',
+        flavour:'{{flavour}}',
+        static_url:'{{STATIC_URL}}',
+        initial_data:{{initial_data|safe}}
+        {% if pager_json %}
+        ,pager:{{pager_json|safe}}
+        {% endif %}
+    }
+    </script>
+</head>
+<body>
+<div class="navbar-fixed">
+    <nav id="main-nav" role="navigation">
+        <div class="nav-wrapper container">
+            <a id="logo-container" href="#" class="brand-logo">元萌</a>
+            <ul class="" id="top_menu">
+            </ul>
+                <div class="col s6" id="top_search">
+                    <div class="ui search">
+                        <div class="ui icon input">
+                            <form action="/search" method="get"><!-- mobile need this-->
+                            <input type="text" name="q" placeholder="{% trans "Search" %}...">
+                            </form>
+                            <i class="search icon"></i>
+                        </div>
+                        <div class="results"></div>
+                    </div>
+                </div>
+
+            <div id="mobile-nav" data-activates="nav-mobile" class="button-collapse">
+            </div>
+            <div id="mobile-search">
+                <form class="ui form inline" action="">
+                     <div class="inline fields">
+                         <div class="search field " id="mobile-search-field">
+                             <input id="mobile-search-input" type="text" name="q">
+
+                         </div>
+                        <div class="field" style="vertical-align: top">
+                            <i class="search big icon"></i>
+                        </div>
+
+                    </div>
+
+                </form>
+
+
+            </div>
+        </div>
+    </nav>
+</div>
+<div id="wrapper">
+<div class="container" style="position: relative">
+    <div id="container" class="row"></div>
+</div>
+</div>
+<script id="message-template" type="x-template">
+    <i class="close icon"></i>
+<div class="header">
+</div>
+    <ul class="list">
+        <% _.each(data, function(d) { %>
+        <li><%= d %></li>
+        <% }); %>
+    </ul>
+</script>
+
+<div id="login-modal" class="ui modal small">
+     <h4 class="ui fluid dividing header">{% trans "Sign In" %}</h4>
+    <div class="messages">
+        <div class="ui message transition hidden">
+          <i class="close icon"></i>
+          <div class="header">
+            Welcome back!
+          </div>
+          <p>This is a special notification which you can dismiss if you're bored with it.</p>
+        </div>
+    </div>
+    <form class="ui form login_form" action="">
+        <div class="field">
+            <label>{% trans "Username" %}</label>
+            <div class="ui icon input">
+                <input type="text" name="username">
+                <i class="user icon"></i>
+            </div>
+        </div>
+        <div class="field">
+            <label>{% trans "Password" %}</label>
+            <div class="ui icon input">
+                <input type="password" name="password">
+                <i class="lock icon"></i>
+            </div>
+        </div>
+
+        <button class="ui submit primary button">{% trans "Sign In" %}</button>
+
+        <div class="ui basic segment">
+
+                {% get_providers as socialaccount_providers %}
+
+                {% if socialaccount_providers %}
+                {% with '#' as signup_url %}
+                <p>{% blocktrans with site.name as site_name %}Please sign in with one
+                of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
+                for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+                {% endwith %}
+                <div class="socialaccount_ballot">
+
+                  <ul class="socialaccount_providers">
+                    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+                  </ul>
+
+                  <div class="login-or">{% trans 'or' %}</div>
+
+                </div>
+
+                {% include "socialaccount/snippets/login_extra.html" %}
+
+                {% else %}
+ {% with '#' as signup_url %}
+                <p>{% blocktrans %}If you have not created an account yet, then please
+<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+ {% endwith %}
+
+                {% endif %}
+
+        </div>
+    </form>
+
+
+</div>
+
+<div id="registration-modal" class="ui modal small">
+    <form class="ui form registration_form" action="" >
+        <div class="ui message" style="display: none">
+                                {% blocktrans %}We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process. Please contact us if you do not receive it within a few minutes.{% endblocktrans %}
+                               </div>
+                                <h4 class="ui fluid dividing header">{% trans "Sign Up" %}</h4>
+
+                                <div class="field">
+                                    <label>{% trans "Username" %}</label>
+
+                                    <div class="ui icon input">
+                                        <input type="text" name="username">
+                                        <i class="user icon"></i>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label>{% trans "Email" %}</label>
+
+                                    <div class="ui icon input">
+                                        <input type="email" name="email">
+                                        <i class="mail icon"></i>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label>{% trans "Password" %}</label>
+
+                                    <div class="ui icon input">
+                                        <input type="password" name="password1">
+                                        <i class="lock icon"></i>
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                    <label>{% trans "Confirm password" %}</label>
+
+                                    <div class="ui icon input">
+                                        <input type="password" name="password2">
+                                        <i class="lock icon"></i>
+                                    </div>
+                                </div>
+                                   {% with '#' as login_url %}
+                                <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+        {% endwith %}
+                                <div class="ui submit primary button">{% trans "Sign Up" %}</div>
+                            </form>
+</div>
+<script type="x-template" id="mobile-nav-template">
+<i id="mobile-nav-btn" class="mdi-navigation-menu"></i>
+     <ul id="mobile-nav-menu" class="side-nav menu">
+                          <% if (request.user.is_authenticated()){%>
+                <li>
+                   <img class="avatar" src="<%= request.user.avatar %>" />
+                    <div class="menu">
+                        <div class="header"><%= request.user.username %></div>
+                        <!--<div class="ui divider"></div>-->
+                        <a href="#" class="item" id="avatar_update">
+                            <i class="user icon"></i>Avatar</a>
+                        <a href="#" class="item" id="logout"><i class="sign out icon"></i>{% trans 'Sign Out' %}</a>
+                    </div>
+                </li>
+
+                     <% }else{ %>
+                <li>
+
+                        <a class="btn-flat modal-trigger" id="register" href="#">{% trans "Sign Up" %}</a>
+
+                </li>
+                <li>
+                        <a class="btn-flat modal-trigger " id="login" href="#">{% trans "Sign In" %}</a>
+
+                </li>
+
+                     <% } %>
+    </ul>
+</script>
+<script type="x-template" id="top_menu-template">
+
+                <% if (request.user.is_authenticated()){%>
+                <li class="user ui combo top right pointing dropdown">
+                    <a href="#"><img class="avatar" src="<%= request.user.avatar %>" /><i class="dropdown icon"></i></a>
+                    <div class="menu">
+                        <div class="header"><%= request.user.username %></div>
+                        <!--<div class="ui divider"></div>-->
+                        <div class="item" id="avatar_update"><i class="photo icon"></i>{% trans 'Avatar' %}</div>
+                        <div class="item" id="logout"><i class="sign out icon"></i>{% trans 'Sign Out' %}</div>
+                    </div>
+                </li>
+
+                     <% }else{ %>
+                          <li>
+                    <div class="ui dropdown combo top right pointing">
+                        <a class="btn-flat modal-trigger" id="register" href="#">{% trans "Sign Up" %}</a>
+
+                        <div class="menu transition">
+                            <form class="ui form registration_form" action="" >
+
+                                <h4 class="ui fluid dividing header">{% trans "Sign Up" %}</h4>
+
+                                <div class="field">
+                                    <label>{% trans "Username" %}</label>
+
+                                    <div class="ui icon input">
+                                        <input type="text" name="username">
+                                        <i class="user icon"></i>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label>{% trans "Email" %}</label>
+
+                                    <div class="ui icon input">
+                                        <input type="email" name="email">
+                                        <i class="mail icon"></i>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label>{% trans "Password" %}</label>
+
+                                    <div class="ui icon input">
+                                        <input type="password" name="password1">
+                                        <i class="lock icon"></i>
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                    <label>{% trans 'Confirm password' %}</label>
+
+                                    <div class="ui icon input">
+                                        <input type="password" name="password2">
+                                        <i class="lock icon"></i>
+                                    </div>
+                                </div>
+
+                                <div class="ui submit primary button">{% trans "Sign Up" %}</div>
+                            </form>
+
+                        </div>
+                    </div>
+                </li>
+                <li>
+
+                    <div class="ui dropdown combo top right pointing">
+                        <a class="btn-flat modal-trigger " id="login" href="#">{% trans "Sign In" %}</a>
+
+                        <div class="menu transition">
+                            <form class="ui form login_form" action="">
+
+                                <h4 class="ui fluid dividing header">{% trans "Sign In" %}</h4>
+
+                                <div class="field">
+                                    <label>{% trans "Username" %}</label>
+
+                                    <div class="ui icon input">
+                                        <input type="text" name="username">
+                                        <i class="user icon"></i>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label>{% trans "Password" %}</label>
+
+                                    <div class="ui icon input">
+                                        <input type="password" name="password">
+                                        <i class="lock icon"></i>
+                                    </div>
+                                </div>
+                                <button class="ui submit primary button">{% trans "Sign In" %}</button>
+                            </form>
+
+                        </div>
+                    </div>
+
+
+                </li>
+
+                     <% } %>
+                        </script>
+    <script type="x-template" id="card-template">
+        <div class="card">
+            <div class="card-image">
+                <div class="post"><img width="189" src="<%= image_url %>">
+
+                  <div class="extra">
+        <span class="left floated like btn-like">
+          <i class="like <% if(liked) {%>red-text<% }else {%>grey-text<% } %> icon"></i>
+          {% trans "Like" %}
+        </span>
+       {% comment %} <span class="right floated star">
+          <i class="star icon"></i>
+          Favorite
+        </span>{% endcomment %}
+      </div> 
+                </div>
+
+            </div>
+            <% if(typeof(description) !== "undefined") {%>
+            <div class="card-content">
+                <p><%= description %></p>
+            </div>
+
+            <% } %>
+
+            <ul class="collection collector">
+                <li class="collection-item avatar">
+                    <img src="<%= author.avatar %>" alt="<%= author.username %>" width="42" height="42" class="circle">
+
+                    <p><a><%= author.username %></a><br>
+                       <time class="timeago" datetime="<%= date_posted %>"><%= date_posted2 %></time>
+                    </p>
+
+                </li>
+            </ul>
+
+
+        </div>
+
+
+    </script>
+
+    <div class="fixed-action-btn">
+    <a class="btn-floating btn-large pink lighten-3" href="#" id="fixed-actions">
+        <i class="mdi-action-list"></i>
+    </a>
+    <ul style="display:none">
+      <!--<li><a class="btn-floating red"><i class="mdi-editor-insert-chart"></i></a></li>-->
+      <!--<li><a class="btn-floating yellow darken-1"><i class="large mdi-editor-format-quote"></i></a></li>-->
+      <li data-content="{% trans 'Back to top' %}" data-position="left center"><a href="#" id="page-top" class="btn-floating blue lighten-1"><i class="mdi-editor-publish"></i></a></li>
+      <!--<li><a class="btn-floating blue"><i class="mdi-editor-attach-file"></i></a></li>-->
+      <li data-content="{% trans 'Upload an image' %}" data-position="left center"><a href="#" id="post-btn" class="btn-floating red lighten-1" ><i class="mdi-editor-mode-edit"></i></a></li>
+      <li data-content="{% trans 'Grab from a website' %}" data-position="left center"><a href="#" id="catch-btn" class="btn-floating red lighten-1" ><i class="mdi-editor-insert-link"></i></a></li>
+    </ul>
+  </div>
+<div id="catch-modal-1" class="ui small modal text-lighten-1 pink-text">
+  <div class="header">{% trans "Grab from a website" %}<i class="close icon right"></i></div>
+  <div class="content">
+    <div class="findPinsField">
+        <div class="ui  fluid action input">
+           <input name="url" type="text" placeholder="http://..." autofocus="">
+            <div class="ui button">{% trans 'Next' %}</div>
+        </div>
+        <!--<p class="formFieldMessage formErrorMessage">Where do you want to Pin from?</p>-->
+    </div>
+  </div>
+
+</div>
+<script id="catch-image-template" type="x-template">
+    <div class="ui card" data-src="<%= url %>">
+      <div class="blurring dimmable image">
+         <div class="ui dimmer">
+            <div class="content">
+              <div class="center">
+                <div class="ui pink button">{% trans 'Select' %}</div>
+              </div>
+            </div>
+         </div>
+
+         <img src="<%= url %>" class="image">
+        <!--<p>Type:<%= type %></p>-->
+        <!--<p>Length:<%= len %></p>-->
+       </div>
+        <div class="extra content">
+            <div class="ui large transparent left icon input">
+          <!--<i class="heart outline icon"></i>-->
+          <input type="text" placeholder="{% trans 'Add Description...' %}">
+        </div>
+            <span class="left floated">
+              Type:<%= type %>
+            </span>
+            <span class="right floated">
+              Length:<%= len %>
+            </span>
+        </div>
+    </div>
+
+</script>
+<div id="catch-modal-2" class="ui fullscreen modal text-lighten-1 pink-text">
+  <div class="header">Pin from a website<i class="close icon right"></i></div>
+  <div class="content">
+    <div class="ui cards"></div>
+  </div>
+ <div class="actions"><button type="button" id="image_confirmed" class="pink btn">{% trans "Confirm to upload" %}</button></div>
+</div>
+  <!-- start post modal -->
+<div id="post-modal" class="ui basic modal text-lighten-1 pink-text">
+  <i class="close icon"></i>
+
+  <div class="content">
+      <div class="image">
+      <i class="large mdi-file-cloud-queue"></i>
+    </div>
+      <div class="description">
+      <p>{% trans "Drag and drop your picture here or browse your folder" %}</p>
+          <div class="ui pink-text pink basic inverted button" id="browse">
+
+        {% trans "Browse..." %}
+      </div>
+
+        <form action="{% url 'api:posts' %}" method="POST" enctype="multipart/form-data" style="display:none">
+        <div class="ui form">
+            <div class="fields row">
+                <div class="col m4">
+                    
+                </div>
+                <div class="col m8">
+
+                    <div class="field">
+                <label> {% trans "Description" %}</label>
+                <input placeholder="description" type="text" name="description">
+                </div>
+                <div class="field">
+                <label>{% trans "Tags" %}</label>
+                <input name="tags" class="tags" />
+                </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+      </form>
+    </div>
+
+
+  </div>
+    <div class="actions"><button type="button" id="upload_image_button" class="pink btn">{% trans "Upload" %}</button></div>
+{% comment %}<div class="actions">
+    <div class="two fluid ui inverted buttons">
+      <div class="ui red basic inverted button">
+        <i class="remove icon"></i>
+        No
+      </div>
+      <div class="ui green basic inverted button">
+        <i class="checkmark icon"></i>
+        Yes
+      </div>
+    </div>
+  </div>{% endcomment %}
+</div>
+<!-- end post modal -->
+
+<script type="x-template" id="comment-template">
+
+
+                        <a class="avatar">
+                        <img src="<%= author.avatar %>">
+                        </a>
+                        <div class="content">
+                        <a class="author"><%= author.username %></a>
+                        <div class="metadata">
+                        <span class="date"> <time class="timeago" datetime="<%= date_created %>"></time></span>
+                        </div>
+                        <div class="text">
+                        <%= message %>
+                        </div>
+                        <div class="actions">
+                        <a class="reply">{% trans 'Reply' %}</a>
+                        </div>
+                        <div id="comment-<%= id %>-reply-form"></div>
+                        </div>
+
+</script>
+
+<script type="x-template" id="reply-form-template">
+
+              <form method="POST" action="<%= comment_url %>" class="ui reply form">
+        <div class="field">
+          <textarea></textarea>
+        </div>
+        <div class="ui blue labeled submit icon button">
+          <i class="icon edit"></i> {% trans 'Reply' %}
+        </div>
+      </form>
+</script>
+<script type="x-template" id="avatar-modal">
+    <i class="close icon"></i>
+  <div class="header">
+    {% trans 'Profile Picture' %}
+  </div>
+  <div class="content">
+    <div class="ui medium image">
+{#      <img id="avatar-preview">#}
+<canvas id="avatar-preview"></canvas>
+    </div>
+    <input type="file" id="avatar_file_input" name="file"/>
+    <output id="target"></output>
+{#    <button id="avatar_crop_btn">subire start!</button>#}
+    <div class="description">
+      {% comment %}<div class="ui header">We've auto-chosen a profile image for you.</div>
+      <p>We've grabbed the following image from the <a href="https://www.gravatar.com" target="_blank">gravatar</a> image associated with your registered e-mail address.</p>
+      <p>Is it okay to use this photo?</p>{% endcomment %}
+    </div>
+  </div>
+  <div class="actions">
+    <div class="ui black deny button">
+      Nope
+    </div>
+    <div class="ui positive right labeled icon button">
+      Upload
+      <i class="checkmark icon"></i>
+    </div>
+  </div>
+
+</script>
+<!-- start post detail simple -->
+<script type="x-template" id="post-detail-simple-template">
+
+  <i class="close icon"></i>
+  <div class="content">
+    <div class="ui grid">
+      <div class="ten wide column">
+    <div class="ui basic button like btn-like">
+  <i class="icon like <% if(liked) {%>red-text<% }else {%>grey-text<% } %> "></i>
+  {% trans "Like" %}
+</div>
+
+{% comment %}<div class="ui basic button visit">
+  <i class="icon external"></i>
+  Visit site
+</div>{% endcomment %}
+
+
+ <div class="ui top left pointing labeled icon dropdown basic button share">
+  <i class="share alternate icon"></i>
+  {% trans "Share" %} <!--i class="dropdown icon"></i-->
+      <div class="menu">
+      <div class="item"> <a title="分享到新浪微博" href="#" class="snsshare snsshare-tsina"></a> 新浪微博</div>
+      <div class="item"> <a title="分享到腾讯微博"  href="#" class="snsshare snsshare-tqq"></a> 腾讯微博</div>
+      <div class="item"> <a title="分享到QQ空间" href="#" class="snsshare snsshare-qzone"></a> QQ空间</div>
+      <div class="item">  <a title="分享到人人网" href="#" class="snsshare snsshare-renren"></a> 人人网</div>
+      <div class="item"> <a title="分享到开心网" href="#" class="snsshare snsshare-kaixin001"></a> 开心网</div>
+      <div class="item"> <a title="分享到网易微博" href="#" class="snsshare snsshare-t163"></a> 网易微博</div>
+      <div class="item">  <a title="分享到搜狐微博" href="#" class="snsshare snsshare-tsohu"></a> 搜狐微博</div>
+      <div class="item"> <a title="分享到腾讯朋友" href="#" class="snsshare snsshare-txpengyou"></a> 腾讯朋友</div>
+      <div class="item">  <a title="分享到豆瓣" href="#" class="snsshare snsshare-douban"></a> 豆瓣</div>
+      </div>
+    </div>
+
+      </div>
+      <div class="twelve wide column">
+        <div class="ui fluid card"> 
+        <div class="image"><img src="<%= image_large_url %>" /></div>
+         <div class="extra">
+         <% if (source){ %>
+          <a href="<%= source %>" class="left floated" rel="nofollow">{% trans 'Found on' %} <%= source_host %></a>
+          <% } %>
+
+
+         <div class="right floated"><i class="download icon"></i><a href="<%= image_large_url %>" download="<%= file_name %>">{% trans 'Download' %}</a></div>
+         </div>
+            <div class="extra">
+                <time class="timeago" datetime="<%= date_posted %>"><%= date_posted2 %></time>
+
+                </div>
+        </div>
+         
+      </div>
+          
+      <div class="four wide column">
+                   <div class="ui fluid card">
+                     <div class="content">
+                     <div class="meta">via</div>
+                  <img class="ui avatar middle aligned floated" src="<%= author.avatar %>"> <span><%= author.username %></span>
+                    <% if (request.user.is_authenticated() && author.username!=request.user.username ) {%>
+                    <div class="ui right floated button pink-text">
+                      <i class="add icon"></i>
+                      Follow
+                    </div>
+                    <% } %>
+                </div>
+            </div>
+      </div>
+    </div>
+
+
+ <div class="ui grid">
+    <div class="twelve wide column">
+         <div class="ui fluid card">
+            <div class="content comments-wrapper">
+                <div class="ui minimal comments"  id="post-<%= id %>-comments">
+                    <h3 class="ui dividing header">{% trans 'Comments' %}</h3>
+                </div>
+                </div>
+
+               <div class="content">
+                <% if (request.user.is_authenticated()) {%>
+                 <form method="POST" action="<%= comment_url %>" class="ui comments-form form">
+                    <div class="field">
+                      <textarea></textarea>
+                    </div>
+                    <div class="ui blue labeled submit icon button">
+                      <i class="icon edit"></i> {% trans 'Comment' %}
+                    </div>
+                </form>
+               </div>
+              <% }else{ %>
+              {% blocktrans %}Please <a href="#" class="logintocomment">Login</a> first!{% endblocktrans %}
+             <% } %>
+        </div>
+    </div>
+</div>
+
+
+</div>
+</script>
+<!-- end post detail simple-->
+
+<div class="ui page global dimmer">
+  <div class="ui active inverted dimmer">
+    <div class="ui large text loader">{% trans 'Loading' %}</div>
+  </div>
+  <p></p>
+</div>
+
+<div class="ui detail dimmer">
+
+</div>
+
+</body>
+</html>
