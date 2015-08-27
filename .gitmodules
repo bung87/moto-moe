@@ -1,0 +1,6 @@
+[submodule "django-js-reverse"]
+	path = django-js-reverse
+	url = https://github.com/bung87/django-js-reverse
+[submodule "django-rest-auth"]
+	path = django-rest-auth
+	url = https://github.com/bung87/django-rest-auth
