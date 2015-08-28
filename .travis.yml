@@ -1,0 +1,13 @@
+language: python
+python:
+  - "3.2"
+  - "3.3"
+  - "3.4"
+
+services:
+  - redis-server
+install:
+  - sudo apt-get install python3-lxml
+  - python setup.py install
+before_script:
+  - mysql -e 'create database moto;'mysql -e 'create database moto;'
