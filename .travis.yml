@@ -3,11 +3,15 @@ python:
   - "3.2"
   - "3.3"
   - "3.4"
-
+env:
+  - DJANGO_SETTINGS_MODULE='moto.moe.settings'
 services:
   - redis-server
 install:
   - sudo apt-get install python3-lxml
   - python setup.py install
+  - django-admin syncdb –migrate –noinput
 before_script:
   - mysql -e 'create database moto;
+scripts:
+  - django-admin test moe
