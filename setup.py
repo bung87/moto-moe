@@ -14,7 +14,7 @@ setup(
     packages =find_packages(),
     include_package_data = True,
     install_requires = install_requires,
-    dependency_links = ['https://raw.githubusercontent.com/bung87/moto-moe/master/dependency_links.txt']
+    dependency_links = ['https://raw.githubusercontent.com/bung87/moto-moe/master/dependency_links.txt'],
     package_data = {
         '': ['*.html', '*.css','*.js','*.map','*.png','*.gif','*.ttf','*.woff','*.woff2','*.svg','*.eot','*.ico'],
         'moto.moe': ['locales/*.js']
