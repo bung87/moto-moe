@@ -24,3 +24,4 @@ lxml==3.4.4
 #Twisted==15.2.1
 aiohttp==0.16.6
 #django-mobile==0.5.0
+django-rq==0.8.0
