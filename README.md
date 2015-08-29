@@ -1,28 +1,31 @@
-# 元萌
+# 元萌 [![Build Status](https://travis-ci.org/bung87/moto-moe.svg?branch=master)](https://travis-ci.org/bung87/moto-moe)
 
 ## System Requirements
 * Python version >= 3
 * [lxml](http://lxml.de/installation.html)
 * Redis-server
-* mysql
+* Mysql
 
 ## Installation
 ```
-    pip install git+https://github.com/bung87/moto-moe
-    pip install -r dependency_links.txt
-    ${VIRTUAL_ENV}/bin/django-admin syncdb
-    ${VIRTUAL_ENV}/bin/django-admin migrate
+    sudo apt-get install python3-lxml
+    pip install git+https://github.com/bung87/moto-moe 
+    pip install -r https://raw.githubusercontent.com/bung87/moto-moe/master/dependency_links.txt
     npm install
 
 ```
-
+## Data migration 
+```
+    ${VIRTUAL_ENV}/bin/django-admin syncdb
+    ${VIRTUAL_ENV}/bin/django-admin migrate
+```
 ## Development
 ```
     mysql.server start
     redis-server /usr/local/etc/redis.conf
-    export DJANGO_SETTINGS_MODULE='settings.dev'
+    export DJANGO_SETTINGS_MODULE='your_package.settings'
     ${VIRTUAL_ENV}/bin/django-admin runserver
-    grunt
+    grunt #build static files
 
 ```
 
