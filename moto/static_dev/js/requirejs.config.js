@@ -2,7 +2,7 @@ requirejs.config({
 //    urlArgs: "bust=v2",
     paths: {
         "jquery": "jquery-2.1.3.min",
-        "underscore": "underscore-1.8.3/underscore.min",
+        // "underscore": "underscore-1.8.3/underscore.min",
         "backbone": "backbone.min",
         "masonry": "masonry-3.2.3/dist/masonry.pkgd.min",
         "imagesloaded": "imagesloaded-3.1.8/imagesloaded.pkgd.min",
