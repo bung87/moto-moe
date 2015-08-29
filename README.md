@@ -11,7 +11,7 @@
     sudo apt-get install python3-lxml
     pip install git+https://github.com/bung87/moto-moe 
     pip install -r https://raw.githubusercontent.com/bung87/moto-moe/master/dependency_links.txt
-    npm install
+    cd `<installation_location>` && npm install && bower install
 
 ```
 ## Data migration 
@@ -21,13 +21,17 @@
 ```
 ## Development
 ```
-    mysql.server start
-    redis-server /usr/local/etc/redis.conf
-    export DJANGO_SETTINGS_MODULE='your_package.settings'
-    ${VIRTUAL_ENV}/bin/django-admin runserver
+    git clone git@github.com:bung87/moto-moe.git
+    python moto/manage.py runserver
+    npm install && bower install
     grunt #build static files
 
 ```
+## Deployment
+    # use grunt building static files 
+    export DJANGO_SETTINGS_MODULE='your_package.settings_module'
+    ${VIRTUAL_ENV}/bin/django-admin collectstatic #collect static files to assets directory
+    gunicorn moto.moe.wsgi:application -c `<your_gunicorn_configuration_directory>`gunicorn_conf.py
 
 ## Search Index
 
