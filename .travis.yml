@@ -14,7 +14,7 @@ install:
   - pip install -r https://raw.githubusercontent.com/bung87/moto-moe/master/dependency_links.txt
 
 before_script:
-  - mysql -e 'create database moto;
+  - mysql -e 'create database moto;'
 scripts:
   - django-admin syncdb
   - django-admin migrate
