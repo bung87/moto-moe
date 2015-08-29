@@ -22,6 +22,8 @@
 ## Development
 ```
     git clone git@github.com:bung87/moto-moe.git
+    pip install -r requirements.txt && pip install -r dependency_links.txt
+    #follow Data migration 
     python moto/manage.py runserver
     npm install && bower install
     grunt #build static files
@@ -30,8 +32,12 @@
 ## Deployment
     # use grunt building static files 
     export DJANGO_SETTINGS_MODULE='your_package.settings_module'
+    #follow Data migration 
     ${VIRTUAL_ENV}/bin/django-admin collectstatic #collect static files to assets directory
     gunicorn moto.moe.wsgi:application -c `<your_gunicorn_configuration_directory>`gunicorn_conf.py
+
+## Packaging
+    python setup.py sdist
 
 ## Search Index
 
