@@ -8,6 +8,7 @@ env:
 services:
   - redis-server
 install:
+  - pip install --upgrade pip
   - sudo apt-get install python3-lxml
   - pip install git+https://github.com/bung87/moto-moe 
   - pip install -r https://raw.githubusercontent.com/bung87/moto-moe/master/dependency_links.txt
