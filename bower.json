@@ -1,0 +1,32 @@
+{
+  "name": "moto.moe",
+  "version": "0.1.2",
+  "homepage": "https://github.com/bung87/moto-moe",
+  "authors": [
+    "bung <zh.bung@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "hammerjs": "2.0.4",
+    "masonry": "3.2.3",
+    "backbone": "~1.2.2",
+    "jquery": "~2.1.4",
+    "jcrop": "~2.0.1",
+    "jstz-1.0.4.min": "https://bitbucket.org/pellepim/jstimezonedetect/downloads/jstz-1.0.4.min.js",
+    "lodash": "~3.10.1",
+    "requirejs": "~2.1.20",
+    "velocity": "~1.2.2",
+    "waves": "~0.7.2",
+    "resumablejs": "~1.0.2",
+    "semantic": "~2.0.8",
+    "selectize": "~0.12.1",
+    "jquery-timeago": "~1.4.2"
+  }
+}

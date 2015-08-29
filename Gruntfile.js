@@ -47,8 +47,14 @@ module.exports = function (grunt) {
                 },
                 files: {
                     'moto/static/js/app.min.js': ['moto/static_dev/js/app.js'],
-                    'moto/static/js/myScroller.min.js': ['moto/static_dev/js/myScroller.js'],
-                    'moto/static/jquery-timeago-1.4.1/jquery.timeago.min.js': ['moto/static/jquery-timeago-1.4.1/jquery.timeago.js']
+                    'moto/static/js/myScroller.min.js': ['moto/static_dev/js/myScroller.js']
+                    // 'moto/static/jquery-timeago-1.4.1/jquery.timeago.min.js': ['moto/static/jquery-timeago-1.4.1/jquery.timeago.js']
+                }
+            },libs:{
+                files:{
+                    'moto/static/js/require.min.js':'moto/static/js/require.js'
+                    ,'moto/static/js/resumable.min.js':'moto/static/js/resumable.js'
+                    ,'moto/static/js/jquery.timeago.min.js':'moto/static/js/jquery.timeago.js'
                 }
             }
         },
@@ -94,20 +100,68 @@ module.exports = function (grunt) {
           target: {
             files: {
               'moto/static/semantic/semantic.min.css': 'moto/static/semantic/semantic.css',
-              'moto/static/jquery.snsshare.js/css/style.min.css': 'moto/static/jquery.snsshare.js/css/style.css',
-              'moto/static/selectize.js-0.12.1/dist/css/selectize.bootstrap3.min.css': 'moto/static/selectize.js-0.12.1/dist/css/selectize.bootstrap3.css'
+              'moto/static/jquery.snsshare.js/css/style.min.css': 'moto/static/jquery.snsshare.js/css/style.css'
+              // 'moto/static/selectize.js-0.12.1/dist/css/selectize.bootstrap3.min.css': 'moto/static/selectize.js-0.12.1/dist/css/selectize.bootstrap3.css'
             }
           }
         }
+        ,bowercopy: {
+             js: {
+                options: {
+                    destPrefix: 'moto/static_tmp/js'
+                },
+                files: {
+                 'jquery.min.js': 'jquery/dist/jquery.min.js'
+                ,'jquery.min.map': 'jquery/dist/jquery.min.map'
+                ,'backbone-min.js': 'backbone/backbone-min.js'
+                ,'backbone-min.map': 'backbone/backbone-min.map'
+                ,'hammer.min.map': 'hammerjs/hammer.min.map'
+                ,'hammer.min.js': 'hammerjs/hammer.min.js'
+                ,'jstz.min.js': 'jstz-1.0.4.min/index.js'
+                ,'lodash.min.js': 'lodash/lodash.min.js'
+                ,'masonry.min.js': 'masonry/dist/masonry.pkgd.min.js'
+                ,'require.js': 'requirejs/require.js'
+                ,'resumable.js': 'resumablejs/resumable.js'
+                ,'velocity.min.js': 'velocity/velocity.min.js'
+                ,'waves.min.js': 'waves/dist/waves.min.js'
+                ,'waves.min.js.map': 'waves/dist/waves.min.js.map'
+                ,'Jcrop.min.js': 'jcrop/js/Jcrop.min.js'
+                ,'jquery.color.js': 'jcrop/js/jquery.color.js'
+                ,'semantic.min.js': 'semantic/dist/semantic.min.js'
+                // ,'jquery.timeago.js': 'jquery-timeago/jquery.timeago.js'
+                }
+            },
+            css:{
+                options: {
+                    destPrefix: 'moto/static_tmp/css'
+                },
+                files:{
+                    'waves.css':'waves/dist/waves.css'
+                    ,'Jcrop.css':'jcrop/css/Jcrop.css'
+                    ,'Jcrop.gif':'jcrop/css/Jcrop.gif'
+                    ,'themes':'semantic/dist/themes'
+                    // ,'semantic.min.css': 'semantic/dist/semantic.min.css'
+                }
+            },
+            plugins:{
+                 options: {
+                    destPrefix: 'moto/static_tmp/'
+                },
+                files:{
+                    'selectize':'selectize/dist/'
+                    // 'jquery-timeago':'jquery-timeago/locales/'
+                }
+            }
+        }
 
     });
-
+    grunt.loadNpmTasks('grunt-bowercopy');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
-    grunt.registerTask('default', ['concat:dist','less:dist','uglify:clean', 'uglify:build','copy:main']);
+    grunt.registerTask('default', ['bowercopy:js','bowercopy:css','bowercopy:plugins','uglify:libs','concat:dist','less:dist','uglify:clean', 'uglify:build','copy:main']);
     
 };
