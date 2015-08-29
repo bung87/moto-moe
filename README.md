@@ -1,5 +1,5 @@
 # 元萌 [![Build Status](https://travis-ci.org/bung87/moto-moe.svg?branch=master)](https://travis-ci.org/bung87/moto-moe)
-
+![brower preview](moto.moe_brower_preview_2015-08-29.png)  
 ## System Requirements
 * Python version >= 3
 * [lxml](http://lxml.de/installation.html)
