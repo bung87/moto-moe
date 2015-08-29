@@ -12,9 +12,10 @@ install:
   - sudo apt-get install python3-lxml
   - pip install git+https://github.com/bung87/moto-moe 
   - pip install -r https://raw.githubusercontent.com/bung87/moto-moe/master/dependency_links.txt
-  - django-admin syncdb
-  - django-admin migrate
+
 before_script:
   - mysql -e 'create database moto;
 scripts:
+  - django-admin syncdb
+  - django-admin migrate
   - django-admin test moe
