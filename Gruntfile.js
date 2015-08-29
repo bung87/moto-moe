@@ -54,7 +54,7 @@ module.exports = function (grunt) {
                 files:{
                     'moto/static/js/require.min.js':'moto/static/js/require.js'
                     ,'moto/static/js/resumable.min.js':'moto/static/js/resumable.js'
-                    ,'moto/static/js/jquery.timeago.min.js':'moto/static/js/jquery.timeago.js'
+                    // ,'moto/static/js/jquery.timeago.min.js':'moto/static/js/jquery.timeago.js'
                 }
             }
         },
@@ -108,7 +108,7 @@ module.exports = function (grunt) {
         ,bowercopy: {
              js: {
                 options: {
-                    destPrefix: 'moto/static_tmp/js'
+                    destPrefix: 'moto/static/js'
                 },
                 files: {
                  'jquery.min.js': 'jquery/dist/jquery.min.js'
@@ -133,7 +133,7 @@ module.exports = function (grunt) {
             },
             css:{
                 options: {
-                    destPrefix: 'moto/static_tmp/css'
+                    destPrefix: 'moto/static/css'
                 },
                 files:{
                     'waves.css':'waves/dist/waves.css'
@@ -145,7 +145,7 @@ module.exports = function (grunt) {
             },
             plugins:{
                  options: {
-                    destPrefix: 'moto/static_tmp/'
+                    destPrefix: 'moto/static/'
                 },
                 files:{
                     'selectize':'selectize/dist/'

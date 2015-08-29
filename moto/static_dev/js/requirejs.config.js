@@ -1,5 +1,10 @@
 requirejs.config({
 //    urlArgs: "bust=v2",
+   "map": {
+        "*": {
+            "underscore" : "lodash"
+        }
+    },
     paths: {
         "jquery": "jquery.min",
         // "underscore": "underscore-1.8.3/underscore.min",
@@ -40,7 +45,7 @@ requirejs.config({
         'iscroll':{
             exports:'IScroll'
         },
-        'underscore': {
+        'lodash': {
             exports: '_'
         },
         'jquery': {
