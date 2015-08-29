@@ -18,4 +18,4 @@ before_script:
 script:
   - django-admin syncdb
   - django-admin migrate
-  - django-admin test moe
+  - django-admin test moto.moe
