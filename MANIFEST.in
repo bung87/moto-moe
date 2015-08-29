@@ -2,6 +2,7 @@ include requirements.txt
 include dependency_links.txt
 include Gruntfile.js
 include package.json
+include bower.json
 
 graft moto/static/css
 graft moto/static/font
