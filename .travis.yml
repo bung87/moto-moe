@@ -15,7 +15,7 @@ install:
 
 before_script:
   - mysql -e 'create database moto;'
-scripts:
+script:
   - django-admin syncdb
   - django-admin migrate
   - django-admin test moe
