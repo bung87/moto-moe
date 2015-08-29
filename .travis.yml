@@ -9,7 +9,8 @@ services:
   - redis-server
 install:
   - sudo apt-get install python3-lxml
-  - pip install git+https://github.com/bung87/moto-moe  --process-dependency-links --allow-all-external  moto-moe --trusted-host github.com
+  - pip install git+https://github.com/bung87/moto-moe 
+  - pip install -r https://raw.githubusercontent.com/bung87/moto-moe/master/dependency_links.txt
   - django-admin syncdb –migrate –noinput
 before_script:
   - mysql -e 'create database moto;
