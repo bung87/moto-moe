@@ -27,6 +27,7 @@
     "resumablejs": "~1.0.2",
     "semantic": "~2.0.8",
     "selectize": "~0.12.1",
-    "jquery-timeago": "~1.4.2"
+    "jquery-timeago": "~1.4.2",
+    "imagesloaded": "~3.1.8"
   }
 }

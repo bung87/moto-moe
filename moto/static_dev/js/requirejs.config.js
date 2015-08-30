@@ -10,7 +10,7 @@ requirejs.config({
         // "underscore": "underscore-1.8.3/underscore.min",
         "backbone": "backbone-min",
         "masonry": "masonry.min",
-        "imagesloaded": "imagesloaded-3.1.8/imagesloaded.pkgd.min",
+        "imagesloaded": "imagesloaded.pkgd.min",
         // "materialize": "../materialize/js/materialize.min",
         'semantic':'semantic.min',
         'hammerjs': 'hammer.min',
