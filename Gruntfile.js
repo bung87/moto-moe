@@ -128,6 +128,7 @@ module.exports = function (grunt) {
                 ,'Jcrop.min.js': 'jcrop/js/Jcrop.min.js'
                 ,'jquery.color.js': 'jcrop/js/jquery.color.js'
                 ,'semantic.min.js': 'semantic/dist/semantic.min.js'
+                ,'imagesloaded.pkgd.min.js': 'imagesloaded/imagesloaded.pkgd.min.js'
                 // ,'jquery.timeago.js': 'jquery-timeago/jquery.timeago.js'
                 }
             },
