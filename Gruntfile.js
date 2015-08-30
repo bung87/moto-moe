@@ -143,7 +143,7 @@ module.exports = function (grunt) {
                     ,'Jcrop.css':'jcrop/css/Jcrop.css'
                     ,'Jcrop.gif':'jcrop/css/Jcrop.gif'
                     ,'themes':'semantic/dist/themes'
-                    // ,'semantic.min.css': 'semantic/dist/semantic.min.css'
+                    ,'semantic.min.css': 'semantic/dist/semantic.min.css'
                 }
             },
             plugins:{
