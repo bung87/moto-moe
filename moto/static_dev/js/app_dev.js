@@ -5,7 +5,7 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
     }
     , site = window.site
     , lang =  (!!timeago_langmap[site.lang])?timeago_langmap[site.lang]:site.lang
-    , timeago_lang = site.static_url+'jquery-timeago-1.4.1/locales/jquery.timeago.'+lang+'.js';
+    , timeago_lang = site.static_url+'js/jquery-timeago/locales/jquery.timeago.'+lang+'.js';
     function likeit(a) {
         a.preventDefault();
         a.stopImmediatePropagation();
