@@ -54,7 +54,7 @@ module.exports = function (grunt) {
                 files:{
                     'moto/static/js/require.min.js':'moto/static/js/require.js'
                     ,'moto/static/js/resumable.min.js':'moto/static/js/resumable.js'
-                    // ,'moto/static/js/jquery.timeago.min.js':'moto/static/js/jquery.timeago.js'
+                    ,'moto/static/js/jquery-timeago/jquery.timeago.min.js':'moto/static/js/jquery-timeago/jquery.timeago.js'
                 }
             }
         },
@@ -129,7 +129,9 @@ module.exports = function (grunt) {
                 ,'jquery.color.js': 'jcrop/js/jquery.color.js'
                 ,'semantic.min.js': 'semantic/dist/semantic.min.js'
                 ,'imagesloaded.pkgd.min.js': 'imagesloaded/imagesloaded.pkgd.min.js'
-                // ,'jquery.timeago.js': 'jquery-timeago/jquery.timeago.js'
+                ,'jquery-timeago/jquery.timeago.js': 'jquery-timeago/jquery.timeago.js'
+                ,'jquery-timeago/locales/':'jquery-timeago/locales/' 
+               
                 }
             },
             css:{
@@ -150,7 +152,7 @@ module.exports = function (grunt) {
                 },
                 files:{
                     'selectize':'selectize/dist/'
-                    // 'jquery-timeago':'jquery-timeago/locales/'
+                    
                 }
             }
         }

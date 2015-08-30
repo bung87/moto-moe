@@ -17,7 +17,7 @@ requirejs.config({
         'velocity':'velocity.min',
         'resumable':'resumable.min',
         'selectize':'../selectize/js/standalone/selectize.min',
-        'timeago':'../jquery-timeago-1.4.1/jquery.timeago.min',
+        'timeago':'jquery-timeago/jquery.timeago.min',
         'snsshare':'../jquery.snsshare.js/js/SNShare.min',
         'jcolor':'jquery.color.min',
         'jcrop':'jquery.Jcrop.min',
