@@ -15,6 +15,7 @@ from moto.moe.api.serializers import (
 from django.http import Http404
 from rest_framework.response import Response
 from moto.moe import models
+import django_mobile
 RESULTS_PER_PAGE = getattr(settings, 'HAYSTACK_SEARCH_RESULTS_PER_PAGE', 20)
 
 class SearchView(GenericAPIView):
@@ -92,6 +93,10 @@ class SearchView(GenericAPIView):
         ret.update(serializer.data)
         return Response(ret)
     def post(self, request, *args, **kwargs):
+        flavour = django_mobile.get_flavour(request)
+        self.results_per_page = 12 if flavour == 'mobile' else 24
         return self.list(request, *args, **kwargs)
     def get(self, request, *args, **kwargs):
+        flavour = django_mobile.get_flavour(request)
+        self.results_per_page = 12 if flavour == 'mobile' else 24
         return self.list(request, *args, **kwargs)
