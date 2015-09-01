@@ -11,9 +11,7 @@ REST_FRAMEWORK = getattr(settings,'REST_FRAMEWORK')
 
 def api_retrieve(request,api_class,*args,**kwargs):
     flavour = django_mobile.get_flavour(request)
-    print('flavour:',flavour)
     page_size = 12 if flavour == 'mobile' else 24
-    print(page_size)
     pager ={}
     page = request.GET.get('page',1)
     page_size = request.GET.get(REST_FRAMEWORK['PAGINATE_BY_PARAM'],page_size)
@@ -32,7 +30,6 @@ def api_retrieve(request,api_class,*args,**kwargs):
 
 def home(request):
     flavour = django_mobile.get_flavour(request)
-    print('flavour:',flavour)
     user_serializer = UserDetailSerializer(request.user)
     user_json = JSONRenderer().render(user_serializer.data)
     content,pager = api_retrieve(request,PostList)
