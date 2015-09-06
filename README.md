@@ -3,7 +3,7 @@
 
 ## Technology stack
 * [Django](https://www.djangoproject.com/)
-* [Backbone.js](http://backbonejs.org/) [lodash](https://lodash.com/) as dependency
+* [Backbone.js](http://backbonejs.org/) ([lodash](https://lodash.com/) as dependency)
 * [requirejs](http://requirejs.org/)
 * see [requirements.txt](./requirements.txt) [dependency_links.txt](./dependency_links.txt) [bower.json](./bower.json) for full list  
 
