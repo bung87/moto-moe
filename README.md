@@ -1,5 +1,12 @@
 # 元萌 [![Build Status](https://travis-ci.org/bung87/moto-moe.svg?branch=master)](https://travis-ci.org/bung87/moto-moe)
-![brower preview](moto.moe_brower_preview_2015-08-29.png)  
+![brower preview](artwork.png)  
+
+## Technology stack
+* [Django](https://www.djangoproject.com/)
+* [Backbone.js](http://backbonejs.org/) [lodash](https://lodash.com/) as dependency
+* [requirejs](http://requirejs.org/)
+* see [requirements.txt](./requirements.txt) [dependency_links.txt](./dependency_links.txt) [bower.json](./bower.json) for full list  
+
 ## System Requirements
 * Python version >= 3
 * [lxml](http://lxml.de/installation.html)
