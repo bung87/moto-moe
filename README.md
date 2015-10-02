@@ -12,10 +12,16 @@
 * [lxml](http://lxml.de/installation.html)
 * Redis-server
 * Mysql
+## Prerequisites
+### mysqlclient
+`sudo apt-get install python-dev libmysqlclient-dev` # Debian / Ubuntu
+`sudo yum install python-devel mysql-devel` # Red Hat / CentOS
+### lxml
+`sudo apt-get install libxml2-dev libxslt-dev python3-dev python3-lxml` # Debian / Ubuntu
+`sudo yum install libxml2-devel libxslt-devel python3-devel python3-lxml` # Red Hat / CentOS
 
 ## Installation
 ```
-    sudo apt-get install python3-lxml
     pip install git+https://github.com/bung87/moto-moe 
     pip install -r https://raw.githubusercontent.com/bung87/moto-moe/master/dependency_links.txt
     cd `<installation_location>` && npm install && bower install
