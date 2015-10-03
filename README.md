@@ -11,7 +11,8 @@
 * Python version >= 3
 * [lxml](http://lxml.de/installation.html)
 * Redis-server
-* Mysql
+* Mysql  
+
 ## Prerequisites  
 ### mysqlclient  
 `sudo apt-get install python-dev libmysqlclient-dev` # Debian / Ubuntu  
