@@ -1,15 +1,33 @@
 # 元萌 [![Build Status](https://travis-ci.org/bung87/moto-moe.svg?branch=master)](https://travis-ci.org/bung87/moto-moe)
-![brower preview](moto.moe_brower_preview_2015-08-29.png)  
+![brower preview](artwork.png)  
+
+## Technology stack
+* [Django](https://www.djangoproject.com/)
+* [Backbone.js](http://backbonejs.org/) ([lodash](https://lodash.com/) as dependency)
+* [requirejs](http://requirejs.org/)
+* see [requirements.txt](./requirements.txt) [dependency_links.txt](./dependency_links.txt) [bower.json](./bower.json) for full list  
+
 ## System Requirements
 * Python version >= 3
 * [lxml](http://lxml.de/installation.html)
 * Redis-server
-* Mysql
+* Mysql  
+* gettext
+
+## Prerequisites  
+### mysqlclient  
+`sudo apt-get install python-dev libmysqlclient-dev` # Debian / Ubuntu  
+`sudo yum install python-devel mysql-devel` # Red Hat / CentOS  
+### lxml  
+`sudo apt-get install libxml2-dev libxslt-dev python3-dev python3-lxml` # Debian / Ubuntu  
+`sudo yum install libxml2-devel libxslt-devel python3-devel python3-lxml` # Red Hat / CentOS  
+### gettext
+`sudo apt-get install gettext` # Debian / Ubuntu  
+`sudo yum install gettext` # Red Hat / CentOS  
 
 ## Installation
 ```
-    sudo apt-get install python3-lxml
-    pip install git+https://github.com/bung87/moto-moe 
+    pip install https://github.com/bung87/moto-moe/archive/<latest_release>.zip
     pip install -r https://raw.githubusercontent.com/bung87/moto-moe/master/dependency_links.txt
     cd `<installation_location>` && npm install && bower install
 
@@ -24,7 +42,7 @@
     git clone git@github.com:bung87/moto-moe.git
     pip install -r requirements.txt && pip install -r dependency_links.txt
     #follow Data migration 
-    python moto/manage.py runserver
+    PYTHONPATH=./ python moto/manage.py runserver
     npm install && bower install
     grunt #build static files
 
@@ -33,8 +51,9 @@
     # use grunt building static files 
     export DJANGO_SETTINGS_MODULE='your_package.settings_module'
     #follow Data migration 
-    ${VIRTUAL_ENV}/bin/django-admin collectstatic #collect static files to assets directory
-    gunicorn moto.moe.wsgi:application -c `<your_gunicorn_configuration_directory>`gunicorn_conf.py
+    ${VIRTUAL_ENV}/bin/django-admin collectstatic #collect static files to assets directory  
+    ${VIRTUAL_ENV}/bin/django-admin compilemessages # complie i18n file,currently support English,Chinese,Japanese  
+    gunicorn moto.moe.wsgi:application -c `<your_gunicorn_configuration_directory>`gunicorn_conf.py --pythonpath ./
 
 ## Packaging
     python setup.py sdist
