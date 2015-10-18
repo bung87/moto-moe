@@ -126,7 +126,7 @@ module.exports = function (grunt) {
                 ,'velocity.min.js': 'velocity/velocity.min.js'
                 ,'waves.min.js': 'waves/dist/waves.min.js'
                 ,'waves.min.js.map': 'waves/dist/waves.min.js.map'
-                ,'Jcrop.min.js': 'jcrop/js/Jcrop.min.js'
+                ,'jquery.Jcrop.min.js': 'jcrop/js/Jcrop.min.js'
                 ,'jquery.color.js': 'jcrop/js/jquery.color.js'
                 ,'semantic.min.js': 'semantic/dist/semantic.min.js'
                 ,'imagesloaded.pkgd.min.js': 'imagesloaded/imagesloaded.pkgd.min.js'
