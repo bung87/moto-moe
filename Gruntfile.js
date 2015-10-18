@@ -55,6 +55,7 @@ module.exports = function (grunt) {
                     'moto/static/js/require.min.js':'moto/static/js/require.js'
                     ,'moto/static/js/resumable.min.js':'moto/static/js/resumable.js'
                     ,'moto/static/js/jquery-timeago/jquery.timeago.min.js':'moto/static/js/jquery-timeago/jquery.timeago.js'
+                 ,'moto/static/js/jquery.color.min.js': 'moto/static/js/jquery.color.js'
                 }
             }
         },
