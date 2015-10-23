@@ -48,12 +48,14 @@
 
 ```
 ## Deployment
-    # use grunt building static files 
-    export DJANGO_SETTINGS_MODULE='your_package.settings_module'
+    # use grunt building static files
+    export PYTHONPATH=./
+    cp moto/moe/settings.py ./
+    export DJANGO_SETTINGS_MODULE='settings'
     #follow Data migration 
     ${VIRTUAL_ENV}/bin/django-admin collectstatic #collect static files to assets directory  
     ${VIRTUAL_ENV}/bin/django-admin compilemessages # complie i18n file,currently support English,Chinese,Japanese  
-    gunicorn moto.moe.wsgi:application -c `<your_gunicorn_configuration_directory>`gunicorn_conf.py --pythonpath ./
+    gunicorn moto.moe.wsgi:application -c `<your_gunicorn_configuration_directory>`gunicorn_conf.py
 
 ## Packaging
     python setup.py sdist
