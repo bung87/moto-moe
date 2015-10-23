@@ -20,6 +20,8 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-contrib-less": "^1.0.1",
     "grunt-contrib-cssmin": "^0.12.3",
-    "grunt-bowercopy": "^1.2.3"
+    "grunt-bowercopy": "^1.2.3",
+    "cheerio": "^0.19.0",
+    "grunt-replace": "^0.11.0"
   }
 }

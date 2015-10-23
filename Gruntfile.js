@@ -1,4 +1,18 @@
 module.exports = function (grunt) {
+    function html_encode(string) {
+    var ret_val = '';
+    for (var i = 0; i < string.length; i++) {
+        if (string.codePointAt(i) > 127) {
+            ret_val += '&#' + string.codePointAt(i) + ';';
+        } else {
+            ret_val += string.charAt(i);
+        }
+    }
+    return ret_val;
+}
+    var mainHtml = grunt.file.read('moto/templates/home.html');
+    var cheerio = require('cheerio'),
+    $ = cheerio.load(mainHtml);
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         banner: '/*!\n * <%= pkg.name %>\n' +
@@ -156,9 +170,29 @@ module.exports = function (grunt) {
                     
                 }
             }
-        }
+        }/*,replace: {
+              dist: {
+                options: {
+                  usePrefix:false,
+                  patterns: [
+                    {
+                      match: /_\.template\(\$\("([-_#a-zA-Z0-9]+)"\)\.html\(\)\)/g,
+                      replacement: function(match,selector){
+
+                        return "_.template('"+$(selector).html().replace(/[\t\n\r]+/g,'')+"')";
+
+                      }
+                    }
+                  ]
+                },
+                files: [
+                  {expand: true, flatten: true, src: ['moto/static_dev/js/app_dev.js'], dest: 'moto/static_replaced/js/'}
+                ]
+              }
+            }*/
 
     });
+
     grunt.loadNpmTasks('grunt-bowercopy');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -166,6 +200,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
-    grunt.registerTask('default', ['bowercopy:js','bowercopy:css','bowercopy:plugins','uglify:libs','concat:dist','less:dist','uglify:clean', 'uglify:build','copy:main']);
+//    grunt.loadNpmTasks('grunt-replace');
+    grunt.registerTask('default', ['bowercopy:js','bowercopy:css','bowercopy:plugins','uglify:libs',/*'replace',*/'concat:dist','less:dist','uglify:clean', 'uglify:build','copy:main']);
     
 };
