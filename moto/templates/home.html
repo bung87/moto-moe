@@ -8,6 +8,7 @@
     <meta name="msapplication-tap-highlight" content="no"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <meta name="theme-color" content="#f48fb1">
+    <script type="text/javascript" src="{% url 'django.views.i18n.javascript_catalog' %}"></script>
     <title>元萌</title>
     <link rel="shortcut icon" href="{{STATIC_URL}}favicon.ico" type="image/x-icon">
     <!-- Compiled and minified CSS -->
@@ -88,6 +89,7 @@
     <div id="container" class="row"></div>
 </div>
 </div>
+{% if debug %}
 <script id="message-template" type="x-template">
     <i class="close icon"></i>
 <div class="header">
@@ -98,7 +100,7 @@
         <% }); %>
     </ul>
 </script>
-
+{% endif %}
 <div id="login-modal" class="ui modal small">
      <h4 class="ui fluid dividing header">{% trans "Sign In" %}</h4>
     <div class="messages">
@@ -210,6 +212,7 @@
                                 <div class="ui submit primary button">{% trans "Sign Up" %}</div>
                             </form>
 </div>
+{% if debug %}
 <script type="x-template" id="mobile-nav-template">
 <i id="mobile-nav-btn" class="mdi-navigation-menu"></i>
      <ul id="mobile-nav-menu" class="side-nav menu">
@@ -239,6 +242,8 @@
                      <% } %>
     </ul>
 </script>
+{% endif %}
+{% if debug %}
 <script type="x-template" id="top_menu-template">
 
                 <% if (request.user.is_authenticated()){%>
@@ -339,6 +344,8 @@
 
                      <% } %>
                         </script>
+{% endif %}
+{% if debug %}
     <script type="x-template" id="card-template">
         <div class="card">
             <div class="card-image">
@@ -380,7 +387,7 @@
 
 
     </script>
-
+{% endif %}
     <div class="fixed-action-btn">
     <a class="btn-floating btn-large pink lighten-3" href="#" id="fixed-actions">
         <i class="mdi-action-list"></i>
@@ -407,6 +414,7 @@
   </div>
 
 </div>
+{% if debug %}
 <script id="catch-image-template" type="x-template">
     <div class="ui card" data-src="<%= url %>">
       <div class="blurring dimmable image">
@@ -437,6 +445,7 @@
     </div>
 
 </script>
+{% endif %}
 <div id="catch-modal-2" class="ui fullscreen modal text-lighten-1 pink-text">
   <div class="header">Pin from a website<i class="close icon right"></i></div>
   <div class="content">
@@ -502,7 +511,7 @@
   </div>{% endcomment %}
 </div>
 <!-- end post modal -->
-
+{% if debug %}
 <script type="x-template" id="comment-template">
 
 
@@ -524,7 +533,8 @@
                         </div>
 
 </script>
-
+{% endif %}
+{% if debug %}
 <script type="x-template" id="reply-form-template">
 
               <form method="POST" action="<%= comment_url %>" class="ui reply form">
@@ -536,6 +546,8 @@
         </div>
       </form>
 </script>
+{% endif %}
+{% if debug %}
 <script type="x-template" id="avatar-modal">
     <i class="close icon"></i>
   <div class="header">
@@ -566,6 +578,8 @@
   </div>
 
 </script>
+{% endif %}
+{% if debug %}
 <!-- start post detail simple -->
 <script type="x-template" id="post-detail-simple-template">
 
@@ -668,7 +682,7 @@
 </div>
 </script>
 <!-- end post detail simple-->
-
+{% endif %}
 <div class="ui page global dimmer">
   <div class="ui active inverted dimmer">
     <div class="ui large text loader">{% trans 'Loading' %}</div>

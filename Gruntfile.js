@@ -170,7 +170,7 @@ module.exports = function (grunt) {
                     
                 }
             }
-        }/*,replace: {
+        },replace: {
               dist: {
                 options: {
                   usePrefix:false,
@@ -178,8 +178,14 @@ module.exports = function (grunt) {
                     {
                       match: /_\.template\(\$\("([-_#a-zA-Z0-9]+)"\)\.html\(\)\)/g,
                       replacement: function(match,selector){
-
-                        return "_.template('"+$(selector).html().replace(/[\t\n\r]+/g,'')+"')";
+                         var linebreak =$(selector).html().replace(/[\t\n\r]+/g,'')
+                             ,whitespace = linebreak.replace(/\s+/g,' ')
+                             ,djangotags = whitespace.replace(/{% comment %}[^{]+{% endcomment %}/g,'')
+                                 .replace(/{# [^#]+#}/g,'')
+                             ,trans = djangotags.replace(/{% trans ([^%]+) %}/g,"'+gettext($1)+'")
+//                             ,quote = trans.replace(/'/g,"\\'")
+                              ;
+                        return "_.template('"+trans+"')";
 
                       }
                     }
@@ -189,7 +195,7 @@ module.exports = function (grunt) {
                   {expand: true, flatten: true, src: ['moto/static_dev/js/app_dev.js'], dest: 'moto/static_replaced/js/'}
                 ]
               }
-            }*/
+            }
 
     });
 
@@ -200,7 +206,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
-//    grunt.loadNpmTasks('grunt-replace');
-    grunt.registerTask('default', ['bowercopy:js','bowercopy:css','bowercopy:plugins','uglify:libs',/*'replace',*/'concat:dist','less:dist','uglify:clean', 'uglify:build','copy:main']);
+    grunt.loadNpmTasks('grunt-replace');
+    grunt.registerTask('default', ['bowercopy:js','bowercopy:css','bowercopy:plugins','uglify:libs','replace','concat:dist','less:dist','uglify:clean', 'uglify:build','copy:main']);
     
 };

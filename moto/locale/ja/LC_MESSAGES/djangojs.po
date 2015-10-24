@@ -1,0 +1,91 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-10-24 16:06+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: static_replaced/js/app_dev.js:112 static_replaced/js/app_dev.js:190
+msgid "Like"
+msgstr ""
+
+#: static_replaced/js/app_dev.js:139 static_replaced/js/app_dev.js:146
+msgid "Reply"
+msgstr ""
+
+#: static_replaced/js/app_dev.js:190
+msgid "Share"
+msgstr ""
+
+#: static_replaced/js/app_dev.js:190
+msgid "Found on"
+msgstr ""
+
+#: static_replaced/js/app_dev.js:190
+msgid "Download"
+msgstr ""
+
+#: static_replaced/js/app_dev.js:190
+msgid "Comments"
+msgstr ""
+
+#: static_replaced/js/app_dev.js:190
+msgid "Comment"
+msgstr ""
+
+#: static_replaced/js/app_dev.js:485
+msgid "Profile Picture"
+msgstr ""
+
+#: static_replaced/js/app_dev.js:592
+msgid "Select"
+msgstr ""
+
+#: static_replaced/js/app_dev.js:592
+msgid "Add Description..."
+msgstr ""
+
+#: static_replaced/js/app_dev.js:795
+msgid "Avatar"
+msgstr ""
+
+#: static_replaced/js/app_dev.js:795 static_replaced/js/app_dev.js:945
+msgid "Sign Out"
+msgstr ""
+
+#: static_replaced/js/app_dev.js:795 static_replaced/js/app_dev.js:945
+msgid "Sign Up"
+msgstr ""
+
+#: static_replaced/js/app_dev.js:795
+msgid "Username"
+msgstr ""
+
+#: static_replaced/js/app_dev.js:795
+msgid "Email"
+msgstr ""
+
+#: static_replaced/js/app_dev.js:795
+msgid "Password"
+msgstr ""
+
+#: static_replaced/js/app_dev.js:795
+msgid "Confirm password"
+msgstr ""
+
+#: static_replaced/js/app_dev.js:795 static_replaced/js/app_dev.js:945
+msgid "Sign In"
+msgstr ""

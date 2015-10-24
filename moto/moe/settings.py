@@ -64,6 +64,7 @@ INSTALLED_APPS = (
     'haystack',
     'django_rq',
     'moto.moe',
+    'moto',
     'django_mobile'
     # 'django.contrib.humanize'
     # 'rest_framework_mongoengine'

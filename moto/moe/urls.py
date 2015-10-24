@@ -5,6 +5,7 @@ from django.conf import settings
 from django_comments_threaded.api import views as comment_views
 from moto.moe.api import views
 from rest_framework.authentication import SessionAuthentication
+from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = patterns('',
     url(r'^$', 'moto.moe.views.home', name='home'),
@@ -32,6 +33,9 @@ urlpatterns += patterns('',
     url(r'^' + RE_CONTENT_OBJECT + 'tree/$', comment_views.TreeView.as_view(),
         name='api_list_tree'),
     )
+js_info_dict = { 'domain': 'djangojs', 'packages': ('moto'), }
+
+urlpatterns += i18n_patterns('', (r'^jsi18n/$', 'django.views.i18n.javascript_catalog', js_info_dict), )
 
 if settings.DEBUG:
     from django.conf.urls.static import static
