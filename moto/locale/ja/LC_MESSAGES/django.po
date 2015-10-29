@@ -402,13 +402,6 @@ msgid ""
 "contact us if you do not receive it within a few minutes."
 msgstr ""
 
-#: moto/templates/account/verified_email_required.html:20
-#, python-format
-msgid ""
-"<strong>Note:</strong> you can still <a href=\"%(email_url)s\">change your e-"
-"mail address</a>."
-msgstr ""
-
 #: moto/templates/home.html:55
 msgid "Search"
 msgstr "検索"
@@ -416,7 +409,7 @@ msgstr "検索"
 #: moto/templates/home.html:114 moto/templates/home.html.py:174
 #: moto/templates/home.html:265 moto/templates/home.html.py:315
 msgid "Username"
-msgstr ""
+msgstr "ユーザー"
 
 #: moto/templates/home.html:121 moto/templates/home.html.py:190
 #: moto/templates/home.html:281 moto/templates/home.html.py:323
@@ -442,7 +435,7 @@ msgstr "パスワードを確認"
 
 #: moto/templates/home.html:249
 msgid "Avatar"
-msgstr "アイコン"
+msgstr "アバター"
 
 #: moto/templates/home.html:349 moto/templates/home.html.py:580
 msgid "Like"
@@ -457,8 +450,8 @@ msgid "Upload an image"
 msgstr "アップロード"
 
 #: moto/templates/home.html:394 moto/templates/home.html.py:398
-msgid "Grab from a website"
-msgstr "ウェブサイトからのポスト"
+msgid "Fetch from a website"
+msgstr "フェッチ"
 
 #: moto/templates/home.html:403
 msgid "Next"
@@ -478,7 +471,7 @@ msgstr "アップロードする"
 
 #: moto/templates/home.html:456
 msgid "Drag and drop your picture here or browse your folder"
-msgstr ""
+msgstr "ここに写真をドラッグ"
 
 #: moto/templates/home.html:459
 msgid "Browse..."
@@ -494,7 +487,7 @@ msgstr "タグ"
 
 #: moto/templates/home.html:490
 msgid "Upload"
-msgstr "アップロードする"
+msgstr "アップロード"
 
 #: moto/templates/home.html:522 moto/templates/home.html.py:536
 msgid "Reply"
@@ -509,12 +502,8 @@ msgid "Share"
 msgstr "シェア"
 
 #: moto/templates/home.html:612
-msgid "Found on"
-msgstr ""
-
-#: moto/templates/home.html:616
-msgid "Download"
-msgstr "ダウンロード"
+msgid "Source"
+msgstr "出所"
 
 #: moto/templates/home.html:648
 msgid "Comments"
@@ -526,9 +515,8 @@ msgstr "送信"
 
 #: moto/templates/home.html:664
 msgid "Please <a href=\"#\" class=\"logintocomment\">Login</a> first!"
-msgstr ""
-"先ずは<a href=\"#\" class=\"logintocomment\">ログイン</a>してください！"
+msgstr "先ずは<a href=\"#\" class=\"logintocomment\">ログイン</a>してください！"
 
 #: moto/templates/home.html:677
 msgid "Loading"
-msgstr "ローディング"
+msgstr "読み込み中"

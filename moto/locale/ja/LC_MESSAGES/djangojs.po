@@ -24,11 +24,11 @@ msgstr "いいね！"
 
 #: static_replaced/js/app_dev.js:139 static_replaced/js/app_dev.js:146
 msgid "Reply"
-msgstr ""
+msgstr "返信する"
 
 #: static_replaced/js/app_dev.js:190
 msgid "Share"
-msgstr ""
+msgstr "シェア"
 
 #: static_replaced/js/app_dev.js:190
 msgid "Found on"
@@ -40,27 +40,27 @@ msgstr ""
 
 #: static_replaced/js/app_dev.js:190
 msgid "Comments"
-msgstr ""
+msgstr "コメント"
 
 #: static_replaced/js/app_dev.js:190
 msgid "Comment"
-msgstr ""
+msgstr "送信"
 
 #: static_replaced/js/app_dev.js:485
 msgid "Profile Picture"
-msgstr ""
+msgstr "アイコン"
 
 #: static_replaced/js/app_dev.js:592
 msgid "Select"
-msgstr ""
+msgstr "選択"
 
 #: static_replaced/js/app_dev.js:592
 msgid "Add Description..."
-msgstr ""
+msgstr "説明を追加"
 
 #: static_replaced/js/app_dev.js:795
 msgid "Avatar"
-msgstr ""
+msgstr "アイコン"
 
 #: static_replaced/js/app_dev.js:795 static_replaced/js/app_dev.js:945
 msgid "Sign Out"
@@ -72,19 +72,19 @@ msgstr ""
 
 #: static_replaced/js/app_dev.js:795
 msgid "Username"
-msgstr ""
+msgstr "ユーザー"
 
 #: static_replaced/js/app_dev.js:795
 msgid "Email"
-msgstr ""
+msgstr "メールアドレス"
 
 #: static_replaced/js/app_dev.js:795
 msgid "Password"
-msgstr ""
+msgstr "パスワード"
 
 #: static_replaced/js/app_dev.js:795
 msgid "Confirm password"
-msgstr ""
+msgstr "パスワードを確認"
 
 #: static_replaced/js/app_dev.js:795 static_replaced/js/app_dev.js:945
 msgid "Sign In"
