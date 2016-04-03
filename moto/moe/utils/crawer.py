@@ -255,8 +255,8 @@ class PixivCrawer(BaseCrawler):
     netloc ='www.pixiv.net'
     allowed_domains = ["pixiv.net"]
     home_page = 'http://www.pixiv.net/'
-    uid = 'crc32@qq.com'
-    password ='52xijinping'
+    uid = 'put_your_id_here'
+    password ='put_your_password_here'
     login_page = 'https://www.secure.pixiv.net/login.php'
     uid_field = 'pixiv_id'
     password_field = 'pass'
@@ -267,8 +267,8 @@ class SeigaCrawer(BaseCrawler):
     netloc ='seiga.nicovideo.jp'
     allowed_domains = ["nicovideo.jp"]
     home_page = 'http://seiga.nicovideo.jp/'
-    uid = 'crc32@qq.com'
-    password ='52xijinping'
+    uid = 'put_your_id_here'
+    password ='put_your_password_here'
     login_page = 'https://secure.nicovideo.jp/secure/login'
     uid_field = 'mail_tel'
     password_field = 'password'
