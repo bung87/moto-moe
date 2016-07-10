@@ -24,7 +24,12 @@
 ### gettext
 `sudo apt-get install gettext` # Debian / Ubuntu  
 `sudo yum install gettext` # Red Hat / CentOS  
-
+### libjpeg (Pillow depends on)
+install libjpeg-dev with apt
+`sudo apt-get install libjpeg-dev` # Debian / Ubuntu  
+if you're on Ubuntu 14.04, also install this 
+`sudo apt-get install libjpeg8-dev # Debian / Ubuntu  
+`sudo yum install --assumeyes libjpeg-devel` # Red Hat / CentOS
 ## Installation
 ```
     pip install https://github.com/bung87/moto-moe/archive/<latest_release>.zip
