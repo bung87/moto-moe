@@ -91,7 +91,10 @@ class Post(GenericAPIView):
         if chunk:
             return self.create(request, *args, **kwargs)
         else:
-            id = request.session['post_id']
+            try:
+                id = request.session['post_id']
+            except  KeyError:
+                return Response({}, headers=headers )
             tags = request.POST.get('tags')
             description = request.POST.get('description')
             post = self.model.objects.get(pk=id)
