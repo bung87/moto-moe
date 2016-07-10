@@ -526,8 +526,8 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
                     var d = new FileReader();
                     d.onload = function(c) {
                         return function(e) {
-                            var b = $("<img>").attr("src", c.target.result);
-                            $("#avatar-preview").attr("src", c.target.result),
+                            var b = $("<img>").attr("src", e.target.result);
+                            $("#avatar-preview").attr("src", e.target.result),
                             $("#target").html(b), $("#target>img").Jcrop({
                                 onChange: view.avatar_crop,
                                 onSelect: view.avatar_crop,
