@@ -919,6 +919,6 @@ color: #ff1744 !important;
     cursor: pointer;
 }
 .ui.basic.button, .ui.basic.buttons .button {
-    background: rgba(255,255,255,0.75);
+    background: #fff !important;
 }
 /*body{overflow: hidden}*/
