@@ -836,6 +836,9 @@ float: right;
 .card-image .extra{
   max-width: 100%;
 min-height: 0!important;
+-moz-user-select: none;  
+-webkit-user-select: none;  
+-ms-user-select: none; 
 /*-webkit-box-flex: 0;
 -webkit-flex-grow: 0;
 -ms-flex-positive: 0;*/
