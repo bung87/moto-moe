@@ -31,7 +31,7 @@ module.exports = function (grunt) {
                 'moto/static_dev/js/requirejs.config.js',
                 'moto/static_dev/js/django.csrf.js',
                 'moto/static_dev/js/global.js',
-                'moto/static_dev/js/app_dev.js'
+                'moto/static_replaced/js/app_dev.js'
                 ],
                 dest: 'moto/static_dev/js/app_dev.pkged.js'
             }
@@ -73,12 +73,12 @@ module.exports = function (grunt) {
                 }
             }
         },
-        copy: {
-          main: {
-            src: 'moto/static_dev/js/app.js',
-            dest: 'moto/static/js/app.js'
-          }
-        },
+        // copy: {
+        //   main: {
+        //     src: 'moto/static_replaced/js/app_dev.js',
+        //     dest: 'moto/static/js/app.js'
+        //   }
+        // },
         watch: {
             /* options: {
               livereload: true,
@@ -207,6 +207,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-replace');
-    grunt.registerTask('default', ['bowercopy:js','bowercopy:css','bowercopy:plugins','uglify:libs','replace','concat:dist','less:dist','uglify:clean', 'uglify:build','copy:main']);
+    grunt.registerTask('default', ['bowercopy:js','bowercopy:css','bowercopy:plugins','uglify:libs','replace','concat:dist','less:dist','uglify:clean', 'uglify:build']);
     
 };
