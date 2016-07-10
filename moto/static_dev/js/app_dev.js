@@ -514,29 +514,29 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
             f.drawImage($("#target>img").get(0), d.x, d.y, d.w, d.h, 0, 0, b, c);
         },
         avatar_file_input_change: function(a) {
-
-
-        },
-        render: function() {
-            var view = this;
+        var view = this;
             require(['jcrop'],function(jCrop){
-                view.avatar_file_input_change = function(a){
+                // view.avatar_file_input_change = function(a){
                       var b = a.target.files[0];
                     if (!b.type.match("image.*")) return !1;
                     var d = new FileReader();
                     d.onload = function(c) {
-                        return function(e) {
-                            var b = $("<img>").attr("src", e.target.result);
-                            $("#avatar-preview").attr("src", e.target.result),
+                        // return function(e) {
+                            var b = $("<img>").attr("src", c.target.result);
+                            $("#avatar-preview").attr("src", c.target.result),
                             $("#target").html(b), $("#target>img").Jcrop({
                                 onChange: view.avatar_crop,
                                 onSelect: view.avatar_crop,
                                 aspectRatio: 1
                             });
-                        };
-                    }(b), d.readAsDataURL(b);
-                }
+                        // };
+                    }, d.readAsDataURL(b);
+                // }
             });
+
+        },
+        render: function() {
+            
             return this.$el.html(this.template()), this;
         }
     });
