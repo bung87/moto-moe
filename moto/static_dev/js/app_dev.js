@@ -525,7 +525,7 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
                     if (!b.type.match("image.*")) return !1;
                     var d = new FileReader();
                     d.onload = function(c) {
-                        return function(c) {
+                        return function(e) {
                             var b = $("<img>").attr("src", c.target.result);
                             $("#avatar-preview").attr("src", c.target.result),
                             $("#target").html(b), $("#target>img").Jcrop({
