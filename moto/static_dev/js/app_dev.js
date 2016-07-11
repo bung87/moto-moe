@@ -287,7 +287,7 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
 
                 view.$el.find(".ui.dropdown").dropdown({
                  action: function(text, value) {
-                     var $choice=view.$el.find('.'+$(text).attr('class').split(' ')[1]).parent();
+                     var $choice=view.$el.find('.'+$(value).attr('class').split(' ')[1]).parent();
                      view.trigger("snsshare", [ $choice, {} ]);
                     }
             }), require([ "snsshare" ], function(a) {
