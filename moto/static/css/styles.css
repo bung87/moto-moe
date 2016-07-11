@@ -924,4 +924,10 @@ color: #ff1744 !important;
 .ui.basic.button, .ui.basic.buttons .button {
     background: #fff !important;
 }
+.brand-logo sup{
+  color: #ccc;
+  font-size: 12px;
+  top: -18px;
+  left: 5px;
+}
 /*body{overflow: hidden}*/
