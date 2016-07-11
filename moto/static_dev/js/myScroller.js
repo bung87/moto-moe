@@ -1602,7 +1602,7 @@ IScroll.prototype = {
 			case 'click':
 				if ( !e._constructed ) {
 					e.preventDefault();
-					e.stopPropagation();
+					// e.stopPropagation();
 				}
 				break;
 		}
