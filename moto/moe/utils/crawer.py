@@ -28,6 +28,8 @@ JPEG = ['image/jpeg']
 TIFF =['image/tiff','image/x-tiff']
 
 allowed_mime_types = Bitmap+JPEG+TIFF
+from django.conf import settings
+CRAWLER_SETTINGS = getattr(settings,'CRAWLER_SETTINGS')
 
 class BaseCrawler(object):
     name = "base"
@@ -252,11 +254,12 @@ class BaseCrawler(object):
 
 class PixivCrawer(BaseCrawler):
     name = "pixiv"
+    SETTINGS = CRAWLER_SETTINGS.getattr(name)
     netloc ='www.pixiv.net'
     allowed_domains = ["pixiv.net"]
     home_page = 'http://www.pixiv.net/'
-    uid = 'put_your_id_here'
-    password ='put_your_password_here'
+    uid = SETTINGS.getattr("uid")
+    password = SETTINGS.getattr("password")
     login_page = 'https://www.secure.pixiv.net/login.php'
     uid_field = 'pixiv_id'
     password_field = 'pass'
@@ -264,11 +267,12 @@ class PixivCrawer(BaseCrawler):
 
 class SeigaCrawer(BaseCrawler):
     name = "seiga"
+    SETTINGS = CRAWLER_SETTINGS.getattr(name)
     netloc ='seiga.nicovideo.jp'
     allowed_domains = ["nicovideo.jp"]
     home_page = 'http://seiga.nicovideo.jp/'
-    uid = 'put_your_id_here'
-    password ='put_your_password_here'
+    uid = SETTINGS.getattr("uid")
+    password = SETTINGS.getattr("password")
     login_page = 'https://secure.nicovideo.jp/secure/login'
     uid_field = 'mail_tel'
     password_field = 'password'

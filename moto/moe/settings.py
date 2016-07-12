@@ -334,3 +334,14 @@ LOGGING = {
 
     }
 }
+
+CRAWLER_SETTINGS = {
+    "seiga":{
+        "uid":"",
+        "password":""
+    },
+    "pixiv":{
+        "uid":"",
+        "password":""
+    }
+}
