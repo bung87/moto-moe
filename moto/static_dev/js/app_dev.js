@@ -291,18 +291,18 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
                      view.$el.trigger("snsshare", [ $choice, {} ]);
                     }
             }), require([ "snsshare" ], function(a) {
-
+                var title = " 我在［元萌］捕获萌妹一只，邀你一起来把玩！";
                 view.$el.snsshare({
-                    title: document.title,
+                    title: title,
                     images: window.location.protocol+'//'+window.location.hostname+view.model.attributes.image_url,
                     url: document.location.href,
                     site_url: document.location.origin,
                     windowWidth: 800,
                     widnowHeight: 500,
                     site_name: "moto.moe",
-                    summary: view.model.attributes.description,
+                    summary: view.model.attributes.description || title,
                     empty: "",
-                    reason: "reasonreasonreasonreason",
+                    reason: title,
                     pengyou: "pengyou",
                     cb: function() {}
                 });
