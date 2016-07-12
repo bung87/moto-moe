@@ -40,7 +40,7 @@
 				_shareUrl:"http://service.weibo.com/share/share.php?",
 				_images_sep:'||',
 				kwargs:{
-					title:'summary',
+					title:'reason',
 					url:'url',
 					pic:'images'
 				}
@@ -49,7 +49,7 @@
 				_shareUrl:"http://v.t.qq.com/share/share.php?",
 				_images_sep:'|',
 				kwargs:{
-					title:'summary',
+					title:'reason',
 					url:'url',
 					pic:'images'
 				}
@@ -69,14 +69,14 @@
 			renren:{
 				_shareUrl:"http://share.renren.com/share/buttonshare.do?",
 				kwargs:{
-					title:'title',
+					title:'reason',
 					link:'url'
 				}
 			},
 			kaixin001:{
 				_shareUrl:"http://www.kaixin001.com/repaste/share.php?",
 				kwargs:{
-					rtitle:'title',
+					rtitle:'reason',
 					rurl:'url'
 				}
 			},
@@ -85,7 +85,8 @@
 				kwargs:{
 					to:'pengyou',
 					url:'url',
-					pics:'images'
+					pics:'images',
+					desc:'reason'
 				}
 			},
 			douban:{
@@ -93,7 +94,9 @@
 				kwargs:{
 					name:'title',
 					href:'url',
-					image:'images'
+					text:'summary',
+					image:'images',
+					comment:'reason'
 				}
 			}
 		};
