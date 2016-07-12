@@ -80,28 +80,12 @@
 					rurl:'url'
 				}
 			},
-			t163:{
-				_shareUrl :"http://t.163.com/article/user/checkLogin.do?",
-				_images_sep:',',
-				kwargs:{
-					source:'site_name',
-					info:'summary',
-					images:'images'
-				}
-			},
-			tsohu:{
-				_shareUrl:"http://t.sohu.com/third/post.jsp?",
-				kwargs:{
-					title:'summary',
-					url:'url',
-					pic:'images'
-				}
-			},
 			txpengyou:{
 				_shareUrl:"http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?",
 				kwargs:{
 					to:'pengyou',
-					url:'url'
+					url:'url',
+					pics:'images'
 				}
 			},
 			douban:{
