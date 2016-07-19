@@ -91,6 +91,9 @@ requirejs.config({
         },
         'jstz':{
             exports:'jstz'
+        },
+        'easing':{
+            deps: ['jquery']
         }
 
     }
