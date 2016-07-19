@@ -646,9 +646,9 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
         },
         mouseleave:function(e){
             e.stopPropagation();
-            var $this = this.$el;
+            var $this = this.$el,self=this;
             require(['velocity'],function(Velocity){
-                $(document).ready(function(){
+               
 //                    var time = 0;
                     $this.find('ul .btn-floating').velocity("stop", true);
                     $this.find('ul .btn-floating').velocity(
@@ -658,20 +658,20 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
                             $this.find('ul li').each(function(){
                                  $(this).popup('hide',{duration:80});// cause Transition: There is no css animation matching the one you specified. scale out
 
-                             })
+                             });
                         }});
 
 
-                    });
+                    self.showed = false;
                 });
-            this.showed = false;
+            
         },
         mouseenter:function(e){
-            if(!$(e.target).hasClass('mdi-action-list')) return false;
-             e.stopPropagation();
-             var $this = this.$el;
+            if(this.showed) return false;
+            //  e.stopPropagation();
+             var $this = this.$el,self=this;
              require(['velocity'],function(Velocity){
-                  $(document).ready(function(){
+                 
                       $this.find('ul').show();
                     var time = 0;
                     $this.find('ul .btn-floating').reverse().each(function () {
@@ -682,10 +682,10 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
                         $(this).parent().popup('show',{duration:80,delay:{show:time}});
                         time += 40;
                     });
+            
+                    self.showed = true;
              });
-
-             });
-             this.showed = true;
+             
         },
         pageTop:function (e) {
             e.preventDefault();
@@ -713,7 +713,7 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
                 });
                 return
             }
-            positive_func()
+            positive_func();
 
         },
         render:function(){
@@ -725,8 +725,6 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
                      ,transition:'scale'
                  });
             });
-
-
         }
     }), app.Views.TopSearch = Backbone.View.extend({
         el: "#top_search",
