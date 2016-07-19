@@ -8,7 +8,6 @@
     <meta name="msapplication-tap-highlight" content="no"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <meta name="theme-color" content="#f48fb1">
-    <script type="text/javascript" src="{% url 'django.views.i18n.javascript_catalog' %}"></script>
     <title>元萌</title>
     <link rel="shortcut icon" href="{{STATIC_URL}}favicon.ico" type="image/x-icon">
     <!-- Compiled and minified CSS -->
@@ -27,6 +26,7 @@
     {% endif %}
 </head>
     <script src="{% url 'js_reverse' %}" type="text/javascript"></script>
+    <script type="text/javascript" src="{% url 'django.views.i18n.javascript_catalog' %}"></script>
     <script data-main="{{STATIC_URL}}js/app.{% ifnotequal debug True %}min.{% endifnotequal %}js?v=1" src="{{STATIC_URL}}js/require.{% ifnotequal debug True %}min.{% endifnotequal %}js"></script>
     <script>
     var requestData={
