@@ -35,7 +35,7 @@ urlpatterns += patterns('',
     )
 js_info_dict = { 'domain': 'djangojs', 'packages': ('moto'), }
 
-urlpatterns += i18n_patterns('', (r'^jsi18n/$', 'django.views.i18n.javascript_catalog', js_info_dict), )
+urlpatterns += i18n_patterns('', (r'^jsi18n/$', 'django.views.i18n.javascript_catalog', js_info_dict),name='jsi18n' )
 
 if settings.DEBUG:
     from django.conf.urls.static import static

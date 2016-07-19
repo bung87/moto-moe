@@ -26,7 +26,7 @@
     {% endif %}
 </head>
     <script src="{% url 'js_reverse' %}" type="text/javascript"></script>
-    <script type="text/javascript" src="{% url 'django.views.i18n.javascript_catalog' %}"></script>
+    <script type="text/javascript" src="{% url 'jsi18n' %}"></script>
     <script data-main="{{STATIC_URL}}js/app.{% ifnotequal debug True %}min.{% endifnotequal %}js?v=1" src="{{STATIC_URL}}js/require.{% ifnotequal debug True %}min.{% endifnotequal %}js"></script>
     <script>
     var requestData={
