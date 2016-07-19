@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="{{STATIC_URL}}css/styles.min.css?v=1">
     {% else %}
      <link rel="stylesheet" href="{{STATIC_URL}}css/styles.min.css?v=1">
-    {% endif %}
+    {% endifequal %}
 </head>
     <script src="{% url 'js_reverse' %}"></script>
     <script src="{% url 'jsi18n' %}"></script>
@@ -100,7 +100,7 @@
         <% }); %>
     </ul>
 </script>
-{% endif %}
+{% endifequal %}
 <div id="login-modal" class="ui modal small">
      <h4 class="ui fluid dividing header">{% trans "Sign In" %}</h4>
     <div class="messages">
@@ -242,7 +242,7 @@
                      <% } %>
     </ul>
 </script>
-{% endif %}
+{% endifequal %}
 {% ifequal debug True  %}
 <script type="x-template" id="top_menu-template">
 
@@ -344,7 +344,7 @@
 
                      <% } %>
                         </script>
-{% endif %}
+{% endifequal %}
 {% ifequal debug True  %}
     <script type="x-template" id="card-template">
         <div class="card">
@@ -387,7 +387,7 @@
 
 
     </script>
-{% endif %}
+{% endifequal %}
     <div class="fixed-action-btn">
     <a class="btn-floating btn-large pink lighten-3" href="#" id="fixed-actions">
         <i class="mdi-action-list"></i>
@@ -445,7 +445,7 @@
     </div>
 
 </script>
-{% endif %}
+{% endifequal %}
 <div id="catch-modal-2" class="ui fullscreen modal text-lighten-1 pink-text">
   <div class="header">Pin from a website<i class="close icon right"></i></div>
   <div class="content">
@@ -533,7 +533,7 @@
                         </div>
 
 </script>
-{% endif %}
+{% endifequal %}
 {% ifequal debug True  %}
 <script type="x-template" id="reply-form-template">
 
@@ -546,7 +546,7 @@
         </div>
       </form>
 </script>
-{% endif %}
+{% endifequal %}
 {% ifequal debug True  %}
 <script type="x-template" id="avatar-modal">
     <i class="close icon"></i>
@@ -578,7 +578,7 @@
   </div>
 
 </script>
-{% endif %}
+{% endifequal %}
 {% ifequal debug True  %}
 <!-- start post detail simple -->
 <script type="x-template" id="post-detail-simple-template">
@@ -680,7 +680,7 @@
 </div>
 </script>
 <!-- end post detail simple-->
-{% endif %}
+{% endifequal %}
 <div class="ui page global dimmer">
   <div class="ui active inverted dimmer">
     <div class="ui large text loader">{% trans 'Loading' %}</div>
