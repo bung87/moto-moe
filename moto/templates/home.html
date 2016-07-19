@@ -11,7 +11,7 @@
     <title>元萌</title>
     <link rel="shortcut icon" href="{{STATIC_URL}}favicon.ico" type="image/x-icon">
     <!-- Compiled and minified CSS -->
-    {% if debug %}
+    {% ifequal debug True %}
     <!--<link rel="stylesheet" href="{{STATIC_URL}}semantic/semantic.css">-->
     <!--<link rel="stylesheet" href="{{STATIC_URL}}css/styles.css?v=dsf">-->
     <!--<link rel="stylesheet" href="{{STATIC_URL}}css/waves.css">-->
@@ -25,8 +25,8 @@
      <link rel="stylesheet" href="{{STATIC_URL}}css/styles.min.css?v=1">
     {% endif %}
 </head>
-    <script src="{% url 'js_reverse' %}" type="text/javascript"></script>
-    <script type="text/javascript" src="{% url 'jsi18n' %}"></script>
+    <script src="{% url 'js_reverse' %}"></script>
+    <script src="{% url 'jsi18n' %}"></script>
     <script data-main="{{STATIC_URL}}js/app.{% ifnotequal debug True %}min.{% endifnotequal %}js?v=1" src="{{STATIC_URL}}js/require.{% ifnotequal debug True %}min.{% endifnotequal %}js"></script>
     <script>
     var requestData={
@@ -89,7 +89,7 @@
     <div id="container" class="row"></div>
 </div>
 </div>
-{% if debug %}
+{% ifequal debug True  %}
 <script id="message-template" type="x-template">
     <i class="close icon"></i>
 <div class="header">
@@ -212,7 +212,7 @@
                                 <div class="ui submit primary button">{% trans "Sign Up" %}</div>
                             </form>
 </div>
-{% if debug %}
+{% ifequal debug True  %}
 <script type="x-template" id="mobile-nav-template">
 <i id="mobile-nav-btn" class="mdi-navigation-menu"></i>
      <ul id="mobile-nav-menu" class="side-nav menu">
@@ -243,7 +243,7 @@
     </ul>
 </script>
 {% endif %}
-{% if debug %}
+{% ifequal debug True  %}
 <script type="x-template" id="top_menu-template">
 
                 <% if (request.user.is_authenticated()){%>
@@ -345,7 +345,7 @@
                      <% } %>
                         </script>
 {% endif %}
-{% if debug %}
+{% ifequal debug True  %}
     <script type="x-template" id="card-template">
         <div class="card">
             <div class="card-image">
@@ -414,7 +414,7 @@
   </div>
 
 </div>
-{% if debug %}
+{% ifequal debug True  %}
 <script id="catch-image-template" type="x-template">
     <div class="ui card" data-src="<%= url %>">
       <div class="blurring dimmable image">
@@ -511,7 +511,7 @@
   </div>{% endcomment %}
 </div>
 <!-- end post modal -->
-{% if debug %}
+{% ifequal debug True  %}
 <script type="x-template" id="comment-template">
 
 
@@ -534,7 +534,7 @@
 
 </script>
 {% endif %}
-{% if debug %}
+{% ifequal debug True  %}
 <script type="x-template" id="reply-form-template">
 
               <form method="POST" action="<%= comment_url %>" class="ui reply form">
@@ -547,7 +547,7 @@
       </form>
 </script>
 {% endif %}
-{% if debug %}
+{% ifequal debug True  %}
 <script type="x-template" id="avatar-modal">
     <i class="close icon"></i>
   <div class="header">
@@ -579,7 +579,7 @@
 
 </script>
 {% endif %}
-{% if debug %}
+{% ifequal debug True  %}
 <!-- start post detail simple -->
 <script type="x-template" id="post-detail-simple-template">
 

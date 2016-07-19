@@ -254,12 +254,12 @@ class BaseCrawler(object):
 
 class PixivCrawer(BaseCrawler):
     name = "pixiv"
-    SETTINGS = CRAWLER_SETTINGS.getattr(name)
+    SETTINGS = CRAWLER_SETTINGS.get(name)
     netloc ='www.pixiv.net'
     allowed_domains = ["pixiv.net"]
     home_page = 'http://www.pixiv.net/'
-    uid = SETTINGS.getattr("uid")
-    password = SETTINGS.getattr("password")
+    uid = SETTINGS.get("uid")
+    password = SETTINGS.get("password")
     login_page = 'https://www.secure.pixiv.net/login.php'
     uid_field = 'pixiv_id'
     password_field = 'pass'
@@ -267,12 +267,12 @@ class PixivCrawer(BaseCrawler):
 
 class SeigaCrawer(BaseCrawler):
     name = "seiga"
-    SETTINGS = CRAWLER_SETTINGS.getattr(name)
+    SETTINGS = CRAWLER_SETTINGS.get(name)
     netloc ='seiga.nicovideo.jp'
     allowed_domains = ["nicovideo.jp"]
     home_page = 'http://seiga.nicovideo.jp/'
-    uid = SETTINGS.getattr("uid")
-    password = SETTINGS.getattr("password")
+    uid = SETTINGS.get("uid")
+    password = SETTINGS.get("password")
     login_page = 'https://secure.nicovideo.jp/secure/login'
     uid_field = 'mail_tel'
     password_field = 'password'
