@@ -146,6 +146,7 @@ module.exports = function (grunt) {
                 ,'imagesloaded.pkgd.min.js': 'imagesloaded/imagesloaded.pkgd.min.js'
                 ,'jquery-timeago/jquery.timeago.js': 'jquery-timeago/jquery.timeago.js'
                 ,'jquery-timeago/locales/':'jquery-timeago/locales/' 
+                ,'jquery.easing.min.js':'jquery.easing/js/jquery.easing.min.js'
                
                 }
             },

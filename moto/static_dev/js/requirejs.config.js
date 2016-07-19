@@ -24,7 +24,8 @@ requirejs.config({
         'iscroll':'myScroller.min',
         'waves':'waves.min',
         'jstz':'jstz.min',
-        'lodash':'lodash.min'
+        'lodash':'lodash.min',
+        'easing':'jquery.easing.min'
         // 'mustache':'mustache'
     },
     //Remember: only use shim config for non-AMD scripts,

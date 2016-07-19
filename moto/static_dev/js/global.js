@@ -177,7 +177,7 @@ var timezone = jstz.determine(),timezone_name=timezone.name();
     $.cookie('timezone',timezone_name,{expires:30})
 });
 
-require(["jquery", 'selectize','waves'], function ($, Selectize,Waves) {
+require(["jquery", 'selectize','waves','easing'], function ($, Selectize,Waves,easing) {
 
 
     $(document).ready(function () {
