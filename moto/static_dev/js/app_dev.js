@@ -552,7 +552,7 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
             'click #page-top':'pageTop',
             'click #catch-btn':'catch1',
             'mouseenter #fixed-actions':'mouseenter',
-            'mouseleave #fixed-actions':'mouseleave',
+            'mouseleave':'mouseleave',
             'touchstart #fixed-actions':'toggle'
         },
         toggle:function(e){
