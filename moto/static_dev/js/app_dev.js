@@ -546,6 +546,7 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
             this.showed = false;
         },
         showed:false,
+        entered:false,
         el: ".fixed-action-btn",
         events: {
             "click #post-btn": "postModalShow",
@@ -648,25 +649,35 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
             e.stopPropagation();
             var $this = this.$el,self=this;
             require(['velocity'],function(Velocity){
-               
-//                    var time = 0;
-                    $this.find('ul .btn-floating').velocity("stop", true);
-                    $this.find('ul .btn-floating').velocity(
-                        { opacity: "0", scaleX: ".4", scaleY: ".4", translateY: "40px"},
-                        { duration: 80 ,delay:80,complete:function(){
-                            $this.find('ul').hide();
-                            $this.find('ul li').each(function(){
-                                 $(this).popup('hide',{duration:80});// cause Transition: There is no css animation matching the one you specified. scale out
+                (
+                    function($this,self){
+                         setTimeout(function(){
+                        if (self.entered) return;
+                        $this.find('ul .btn-floating').velocity("stop", true);
+                        $this.find('ul .btn-floating').velocity(
+                            { opacity: "0", scaleX: ".4", scaleY: ".4", translateY: "40px"},
+                            { duration: 80 ,delay:80,complete:function(){
+                                $this.find('ul').hide();
+                                $this.find('ul li').each(function(){
+                                    $(this).popup('hide',{duration:80});// cause Transition: There is no css animation matching the one you specified. scale out
 
-                             });
-                        }});
+                                });
+                            }});
 
 
                     self.showed = false;
+                    self.entered = false;
+                        },1000)
+                    }
+                )($this,self)
+                 
+//                    var time = 0;
+                   
                 });
             
         },
         mouseenter:function(e){
+            this.entered = true;
             if(this.showed) return false;
             //  e.stopPropagation();
              var $this = this.$el,self=this;
