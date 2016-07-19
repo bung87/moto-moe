@@ -551,8 +551,8 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
             "click #post-btn": "postModalShow",
             'click #page-top':'pageTop',
             'click #catch-btn':'catch1',
-            'mouseenter':'mouseenter',
-            'mouseleave':'mouseleave',
+            'mouseenter #fixed-actions':'mouseenter',
+            'mouseleave #fixed-actions':'mouseleave',
             'touchstart #fixed-actions':'toggle'
         },
         toggle:function(e){
