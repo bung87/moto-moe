@@ -672,7 +672,7 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
                     self.entered = false;
                         },1000)
                     }
-                )($this,self)
+                )($this,self);
                  
 //                    var time = 0;
                    
@@ -681,13 +681,19 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
         },
         mouseenter:function(e){
             this.entered = true;
-             
+            var self = this;
+            (
+                    function(self){
+                         setTimeout(function(){
+                            self.entered = false;
+                        },500);
+                    }
+                )(self);
             if(this.showed) {
                
                 return true;}
-                 setTimeout(function(){
-                     this.entered = false;
-                 },500);
+                
+                
             //  e.stopPropagation();
              var $this = this.$el,self=this;
              require(['velocity'],function(Velocity){
