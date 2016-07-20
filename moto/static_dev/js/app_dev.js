@@ -687,7 +687,7 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
                 return true;}
                  setTimeout(function(){
                      this.entered = false;
-                 },1000);
+                 },500);
             //  e.stopPropagation();
              var $this = this.$el,self=this;
              require(['velocity'],function(Velocity){
