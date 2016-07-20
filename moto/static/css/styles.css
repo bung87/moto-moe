@@ -421,6 +421,7 @@ nav .button-collapse{
 #mobile-search-field{
   width: calc(~"100% - 62px");
 }
+
 #mobile-search-input{
     background-color: #f48fb1;
     width: 0;
@@ -438,6 +439,11 @@ nav .button-collapse{
         -moz-transition: width .3s;
         -o-transition: width .3s;
         -ms-transition: width .3s;
+        border: none;
+    border-bottom: 1px solid #fff;
+    z-index: 1000;
+    position: relative;
+    margin-top: 0;
 }
 @media only screen and (min-width : 320px) and (max-width: 1440px) {
  .content .ui.grid > .column{
