@@ -649,6 +649,9 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
             e.stopPropagation();
             var $this = this.$el,self=this;
             require(['velocity'],function(Velocity){
+                setTimeout(function(){
+                     self.entered = false;
+                 },1000);
                 if (self.entered) return;
                 (
                     function($this,self){
@@ -671,9 +674,7 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
                         },1000)
                     }
                 )($this,self)
-                 setTimeout(function(){
-                     self.entered = false;
-                 },1000);
+                 
 //                    var time = 0;
                    
                 });
