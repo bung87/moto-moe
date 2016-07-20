@@ -653,9 +653,9 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
                 (
                     
                     function($this,self){
-                        if (self.entered) return;
-                         setTimeout(function(){
                         
+                         setTimeout(function(){
+                        if (self.entered) return;
                         $this.find('ul .btn-floating').velocity("stop", true);
                         $this.find('ul .btn-floating').velocity(
                             { opacity: "0", scaleX: ".4", scaleY: ".4", translateY: "40px"},
