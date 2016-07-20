@@ -649,10 +649,11 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
             e.stopPropagation();
             var $this = this.$el,self=this;
             require(['velocity'],function(Velocity){
-               
-                if (self.entered) return;
+
                 (
+                    
                     function($this,self){
+                        if (self.entered) return;
                          setTimeout(function(){
                         
                         $this.find('ul .btn-floating').velocity("stop", true);
