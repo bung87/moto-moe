@@ -680,7 +680,7 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
         },
         mouseenter:function(e){
             this.entered = true;
-            if(this.showed) return false;
+            if(this.showed) return true;
             //  e.stopPropagation();
              var $this = this.$el,self=this;
              require(['velocity'],function(Velocity){
