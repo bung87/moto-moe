@@ -168,9 +168,9 @@ var app = new App({
     Views: {}
 
 });
-try{
-    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
-}catch (e){}
+// try{
+//     document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+// }catch (e){}
 require(['jquery','jstz'],function($,jstz){
 var timezone = jstz.determine(),timezone_name=timezone.name();
     console.info(timezone_name);
