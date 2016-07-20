@@ -670,7 +670,9 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
                         },1000)
                     }
                 )($this,self)
-                 
+                 setTimeout(function(){
+                     self.entered = false;
+                 },1000);
 //                    var time = 0;
                    
                 });
