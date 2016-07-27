@@ -12,14 +12,14 @@
     <link rel="shortcut icon" href="{{STATIC_URL}}favicon.ico" type="image/x-icon">
     <!-- Compiled and minified CSS -->
     {% ifequal debug True %}
-    <!--<link rel="stylesheet" href="{{STATIC_URL}}semantic/semantic.css">-->
-    <!--<link rel="stylesheet" href="{{STATIC_URL}}css/styles.css?v=dsf">-->
-    <!--<link rel="stylesheet" href="{{STATIC_URL}}css/waves.css">-->
-    <!--<link rel="stylesheet" href="{{STATIC_URL}}css/materialize-icons.css">-->
-    <!--<link rel="stylesheet" href="{{STATIC_URL}}css/materialize-colors.css">-->
-    <!--<link rel="stylesheet" href="{{STATIC_URL}}jquery.snsshare.js/css/style.css">-->
-    <!--<link rel="stylesheet" href="{{STATIC_URL}}selectize.js-0.12.1/dist/css/selectize.bootstrap3.css">-->
-    <!--<link rel="stylesheet" href="{{STATIC_URL}}css/jquery.Jcrop.min.css" type="text/css" />-->
+    <link rel="stylesheet" href="{{STATIC_URL}}semantic/semantic.css">
+    <link rel="stylesheet" href="{{STATIC_URL}}css/styles.css?v=dsf">
+    <link rel="stylesheet" href="{{STATIC_URL}}css/waves.css">
+    <link rel="stylesheet" href="{{STATIC_URL}}css/materialize-icons.css">
+    <link rel="stylesheet" href="{{STATIC_URL}}css/materialize-colors.css">
+    <link rel="stylesheet" href="{{STATIC_URL}}jquery.snsshare.js/css/style.css">
+    <link rel="stylesheet" href="{{STATIC_URL}}selectize.js-0.12.1/dist/css/selectize.bootstrap3.css">
+    <link rel="stylesheet" href="{{STATIC_URL}}css/jquery.Jcrop.min.css" type="text/css" />
     <link rel="stylesheet" href="{{STATIC_URL}}css/styles.min.css?v=1">
     {% else %}
      <link rel="stylesheet" href="{{STATIC_URL}}css/styles.min.css?v=1">
@@ -84,6 +84,36 @@
         </div>
     </nav>
 </div>
+{% ifequal debug True  %}
+<script id="user-banner-template" type="x-template">
+<div class="container" id="user-banner">
+    <div class="card pf_header ">
+        <div class="cover_wrap banner_transition">  </div>
+        <div class="pf_shadow">
+        <div class="pf_photo">
+    <div class="photo_wrap">
+        
+        <a href="javascript:void(0);" title="更换头像">
+							<img width="100" height="100" src="<%= request.user.avatar %>" alt="<%= request.user.username %>" class="photo">
+							</a>
+        
+       
+      
+    </div>
+
+    </div>
+    <div class="pf_username">
+            <h1 class="username"><%= request.user.username %></h1>
+            <span class="icon_bed"><a><i class="W_icon icon_pf_male"></i></a></span>																								<span class="icon_bed"><a><i class="W_icon icon_pf_male"></i></a></span>												
+        </div>
+     <div class="pf_intro">
+            <a class="tlink" href="#">一句话介绍一下自己吧，让别人更了解你</a>
+        </div>
+    </div>
+</div>
+</div>
+</script>
+{% endifequal %}
 <div id="wrapper">
 <div class="container" style="position: relative">
     <div id="container" class="row"></div>
@@ -375,7 +405,7 @@
                 <li class="collection-item avatar">
                     <img src="<%= author.avatar %>" alt="<%= author.username %>" width="42" height="42" class="circle">
 
-                    <p><a><%= author.username %></a><br>
+                    <p><a href="/user/<%= author.username %>"><%= author.username %></a><br>
                        <time class="timeago" datetime="<%= date_posted %>"><%= date_posted2 %></time>
                     </p>
 
@@ -691,6 +721,7 @@
 <div class="ui detail dimmer">
 
 </div>
+
 
 </body>
 </html>

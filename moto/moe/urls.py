@@ -13,7 +13,7 @@ urlpatterns = patterns('',
     url(r'^api/', include('moto.moe.api.urls',namespace='api')),
     url(r'^search/', 'moto.moe.views.search',name='search'),
     url(r'^post/(?P<key>[0-9a-zA-Z]+)/$','moto.moe.views.post',name='post_detail'),
-
+    url(r'^user/(?P<username>[0-9a-z]+)/$', 'moto.moe.views.user',name='user_detail'),
     url(r'^admin/', include(admin.site.urls)),
 )
 

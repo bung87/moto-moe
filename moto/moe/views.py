@@ -2,7 +2,7 @@ from django.shortcuts import render
 from moto.moe.api.serializers import UserDetailSerializer
 from rest_framework.renderers import JSONRenderer
 from django.conf import settings
-from moto.moe.api.views import PostList
+from moto.moe.api.views import PostList,UserDetail
 from moto.moe.api.search import SearchView
 from copy import copy
 import django_mobile
@@ -35,7 +35,7 @@ def home(request):
     content,pager = api_retrieve(request,PostList)
     return render(request,'templates/home.html',{
         'user_json':user_json,
-         'flavour':flavour,
+        'flavour':flavour,
         'pager_json':JSONRenderer().render(pager),
         'initial_data':content
     })
@@ -49,6 +49,18 @@ def search(request):
     content,pager = api_retrieve(request,SearchView,q=request.GET.get('q'))
     return render(request,'templates/home.html',{
         'user_json':user_json,
+        'pager_json':JSONRenderer().render(pager),
+        'initial_data':content
+    })
+
+def user(request,username):
+    flavour = django_mobile.get_flavour(request)
+    user_serializer = UserDetailSerializer(request.user)
+    user_json = JSONRenderer().render(user_serializer.data)
+    content,pager = api_retrieve(request,UserDetail,username = username)
+    return render(request,'templates/home.html',{
+        'user_json':user_json,
+        'flavour':flavour,
         'pager_json':JSONRenderer().render(pager),
         'initial_data':content
     })

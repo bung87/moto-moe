@@ -21,6 +21,7 @@
 ### lxml  
 `sudo apt-get install libxml2-dev libxslt-dev python3-dev python3-lxml` # Debian / Ubuntu  
 `sudo yum install libxml2-devel libxslt-devel python3-devel python3-lxml` # Red Hat / CentOS  
+`STATIC_DEPS=true sudo easy_install lxml` # MacOS-X
 ### gettext
 `sudo apt-get install gettext` # Debian / Ubuntu  
 `sudo yum install gettext` # Red Hat / CentOS  
@@ -47,9 +48,9 @@ if you're on Ubuntu 14.04, also install this
     git clone git@github.com:bung87/moto-moe.git
     pip install -r requirements.txt && pip install -r dependency_links.txt
     #follow Data migration 
-    PYTHONPATH=./ python moto/manage.py runserver
     npm install && bower install
     grunt #build static files
+    PYTHONPATH=./ python moto/manage.py runserver
 
 ```
 ## Deployment

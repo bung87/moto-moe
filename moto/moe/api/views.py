@@ -165,9 +165,41 @@ class UserList(ListCreateAPIView):
     serializer_class = UserDetailSerializer
 
 class UserDetail(RetrieveUpdateDestroyAPIView):
-    model = USER_MODEL
-    queryset = USER_MODEL.objects.all()
-    serializer_class = UserDetailSerializer
+    # model = USER_MODEL
+    # queryset = USER_MODEL.objects.all()
+    model = models.Post
+    queryset = models.Post.objects.select_related('author')
+    serializer_class = PostListSerializer
+    lookup_field = 'author__username'
+    lookup_url_kwarg = 'username'
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset().filter(author__username = self.kwargs['username'])
+        prefetches = []
+        if request.user.is_authenticated():
+            q1 = models.Like.objects.filter(author = request.user)
+            p2 = Prefetch('likes',queryset=q1,to_attr='liked')
+            prefetches.append(p2)
+        self.queryset=queryset.annotate(likes_count=Count('likes')).prefetch_related(*prefetches)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+       
+        page_size = 12 if self.flavour == 'mobile' else 24
+        paginator = self.paginator_class(queryset, page_size)
+        page_kwarg = self.kwargs.get(self.page_kwarg)
+        page_query_param = self.request.query_params.get(self.page_kwarg)
+        page_number = page_kwarg or page_query_param or 1
+
+        page = paginator.page(page_number)
+
+        if page is not None:
+            serializer = self.get_pagination_serializer(page)
+        else:
+            serializer = self.get_serializer(instance, many=True)
+        return serializer.data
+
+    def get(self, request, *args, **kwargs):
+        self.flavour = django_mobile.get_flavour(request)
+        return Response(self.list(request))
 
 
 from django.contrib.contenttypes.models import ContentType

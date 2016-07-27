@@ -964,6 +964,17 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
                 });
                 }
         });
+        app.Views.UserBanner = Backbone.View.extend({
+            el:"#wrapper",
+            template: _.template($("#user-banner-template").html()),
+            remove:function(){
+                $("#user-banner").remove();
+            },
+            render:function(){
+                if($("#user-banner").length===0)
+                this.$el.before(this.template(f));
+            }
+        });
         app.Views.MobileNav = Backbone.View.extend({
         el: "#mobile-nav",
         template: _.template($("#mobile-nav-template").html()),
@@ -1207,7 +1218,55 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
                 d.render().$el.modal('show');
             }
         },
-        user: function(a) {},
+        user_detail: function(a) {
+            var userBanner = new app.Views.UserBanner();
+                userBanner.render();
+             app.router.once("route",function( route, params){
+                 console.log("route1:", route, params);
+                    if (route!== "user_detail")
+                    userBanner.remove();
+                });    
+            delete app.pager.q;
+                console.log(app.router.history);
+                if (!app.inited()) {
+                    app.init();
+                    app.collection = new app.Collections.Posts(f.initial_data.results);
+                } else {
+                     app.update_pager();
+                    app.reset(true)
+                    console.info('reset home');
+                    return
+                }
+               
+                var a = new app.Views.PostsView({
+                    collection: app.collection
+                });
+                app.msnry = new c(a.render().el, {
+                    itemSelector: ".brick",
+                    isAnimated: !1
+                });
+                imagesLoaded(a.el, function () {
+                    app.msnry.layout();
+                site.flavour!='mobile' && require(['iscroll'], function (IScroll) {
+//                    if(!app['myScroll']){
+                    $('#wrapper').height($(window).height() - $('.navbar-fixed').height()-$("#user-banner").height())
+                    app.myScroll = new IScroll('#wrapper', {
+                        scroller: '#wrapper>.container'
+//                        , scrollbars: true
+                        , scrollY: true
+                        , probeType: 2
+                        , mouseWheel: true
+//                      ,useTransform:false //otherwise all post image have 1px white right border while mouse enter
+                        //but it will make #container position relative and incorect change top
+                        //so change scroller from #container to #wrapper>container
+                        , eventPassthrough: 'horizontal'
+                    });
+
+                    app.myScroll.on('scrollEnd', window.onIScroll);
+
+                });
+                });
+        },
         fourOfour: function(a) {}
     }), $(document).ready(function() {
         app.router = new app.Router(), Backbone.history.start({

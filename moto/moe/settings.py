@@ -65,7 +65,8 @@ INSTALLED_APPS = (
     'django_rq',
     'moto.moe',
     'moto',
-    'django_mobile'
+    'django_mobile',
+    # 'social.apps.django_app.default',
     # 'django.contrib.humanize'
     # 'rest_framework_mongoengine'
 )
@@ -277,6 +278,8 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
+if DEBUG :
+    STATICFILES_DIRS+= (os.path.join(BASE_DIR, "static_dev"),)
 STATIC_ROOT = os.path.join(BASE_DIR, "assets")
 
 MEDIA_URL = '/media/'
