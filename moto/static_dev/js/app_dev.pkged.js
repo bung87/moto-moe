@@ -1,4 +1,496 @@
-define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded", "masonry" ], function(_, Backbone, $, semantic, a, imagesLoaded, c) {
+requirejs.config({
+//    urlArgs: "bust=v2",
+   "map": {
+        "*": {
+            "underscore" : "lodash"
+        }
+    },
+    paths: {
+        "jquery": "jquery.min",
+        // "underscore": "underscore-1.8.3/underscore.min",
+        "backbone": "backbone-min",
+        "masonry": "masonry.min",
+        "imagesloaded": "imagesloaded.pkgd.min",
+        // "materialize": "../materialize/js/materialize.min",
+        'semantic':'semantic.min',
+        'hammerjs': 'hammer.min',
+        'velocity':'velocity.min',
+        'resumable':'resumable.min',
+        'selectize':'../selectize/js/standalone/selectize.min',
+        'timeago':'jquery-timeago/jquery.timeago.min',
+        'snsshare':'../jquery.snsshare.js/js/SNShare.min',
+        'jcolor':'jquery.color.min',
+        'jcrop':'jquery.Jcrop.min',
+        'iscroll':'myScroller.min',
+        'waves':'waves.min',
+        'jstz':'jstz.min',
+        'lodash':'lodash.min',
+        'easing':'jquery.easing.min',
+        'editable':'jquery.editable.min'
+        // 'mustache':'mustache'
+    },
+    //Remember: only use shim config for non-AMD scripts,
+    //scripts that do not already call define(). The shim
+    //config will not work correctly if used on AMD scripts,
+    //in particular, the exports and init config will not
+    //be triggered, and the deps config will be confusing
+    //for those cases.
+    shim: {
+        'backbone': {
+            //These script dependencies should be loaded before loading
+            //backbone.js
+            deps: ['lodash'],
+            //Once loaded, use the global 'Backbone' as the
+            //module value.
+            exports: 'Backbone'
+        },
+        'iscroll':{
+            exports:'IScroll'
+        },
+        'lodash': {
+            exports: '_'
+        },
+        'jquery': {
+            exports: ['jQuery','$']
+        },
+         "jcolor": {
+            deps: [ "jquery" ],
+             exports:'jQuery.Color'
+        },
+         "jcrop": {
+            deps: [ "jcolor" ],
+            exports:'jQuery.fn.Jcrop'
+        },
+        "velocity": {
+            deps: [ "jquery" ]
+        },
+        'timeago':{
+          deps:['jquery']
+        },
+        'editable':{
+          deps:['jquery']
+        },
+//        'backbone-tastypie': {
+//            deps: ['backbone'],
+//            exports: 'Backbone'
+//        },
+//        'materialize': {
+//            deps: ['jquery','hammerjs'],
+//            exports: 'Materialize'
+//        },
+        'imagesloaded': {
+            deps: ['jquery'],
+            exports: 'jQuery.fn.imagesloaded'
+        },
+        'snsshare':{
+            deps: ['jquery'],
+            exports:'jQuery.fn.snsshare'
+        },
+        'semantic':{
+            deps:['jquery']
+        },
+        'masonry': {
+            deps: ['jquery'],
+            exports: 'Masonry'
+        },
+        'jstz':{
+            exports:'jstz'
+        },
+        'easing':{
+            deps: ['jquery']
+        }
+
+    }
+});;require(['jquery'],function($){
+
+	var pluses = /\+/g;
+
+	function encode(s) {
+		return config.raw ? s : encodeURIComponent(s);
+	}
+
+	function decode(s) {
+		return config.raw ? s : decodeURIComponent(s);
+	}
+
+	function stringifyCookieValue(value) {
+		return encode(config.json ? JSON.stringify(value) : String(value));
+	}
+
+	function parseCookieValue(s) {
+		if (s.indexOf('"') === 0) {
+			// This is a quoted cookie as according to RFC2068, unescape...
+			s = s.slice(1, -1).replace(/\\"/g, '"').replace(/\\\\/g, '\\');
+		}
+
+		try {
+			// Replace server-side written pluses with spaces.
+			// If we can't decode the cookie, ignore it, it's unusable.
+			// If we can't parse the cookie, ignore it, it's unusable.
+			s = decodeURIComponent(s.replace(pluses, ' '));
+			return config.json ? JSON.parse(s) : s;
+		} catch(e) {}
+	}
+
+	function read(s, converter) {
+		var value = config.raw ? s : parseCookieValue(s);
+		return $.isFunction(converter) ? converter(value) : value;
+	}
+
+	var config = $.cookie = function (key, value, options) {
+
+		// Write
+
+		if (arguments.length > 1 && !$.isFunction(value)) {
+			options = $.extend({}, config.defaults, options);
+
+			if (typeof options.expires === 'number') {
+				var days = options.expires, t = options.expires = new Date();
+				t.setMilliseconds(t.getMilliseconds() + days * 864e+5);
+			}
+
+			return (document.cookie = [
+				encode(key), '=', stringifyCookieValue(value),
+				options.expires ? '; expires=' + options.expires.toUTCString() : '', // use expires attribute, max-age is not supported by IE
+				options.path    ? '; path=' + options.path : '',
+				options.domain  ? '; domain=' + options.domain : '',
+				options.secure  ? '; secure' : ''
+			].join(''));
+		}
+
+		// Read
+
+		var result = key ? undefined : {},
+			// To prevent the for loop in the first place assign an empty array
+			// in case there are no cookies at all. Also prevents odd result when
+			// calling $.cookie().
+			cookies = document.cookie ? document.cookie.split('; ') : [],
+			i = 0,
+			l = cookies.length;
+
+		for (; i < l; i++) {
+			var parts = cookies[i].split('='),
+				name = decode(parts.shift()),
+				cookie = parts.join('=');
+
+			if (key === name) {
+				// If second argument (value) is a function it's a converter...
+				result = read(cookie, value);
+				break;
+			}
+
+			// Prevent storing a cookie that we couldn't decode.
+			if (!key && (cookie = read(cookie)) !== undefined) {
+				result[name] = cookie;
+			}
+		}
+
+		return result;
+	};
+
+	config.defaults = {};
+
+	$.removeCookie = function (key, options) {
+		// Must not alter options, thus extending a fresh object...
+		$.cookie(key, '', $.extend({}, options, { expires: -1 }));
+		return !$.cookie(key);
+	};
+    function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+function sameOrigin(url) {
+    // test that a given url is a same-origin URL
+    // url could be relative or scheme relative or absolute
+    var host = document.location.host, protocol = document.location.protocol, sr_origin = '//' + host, origin = protocol + sr_origin;
+    // Allow absolute or scheme relative URLs to same origin
+    return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
+        (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
+        // or any other URL that isn't scheme relative or absolute i.e relative.
+        !(/^(\/\/|http:|https:).*/.test(url));
+}
+//    var csrftoken = getCookie('csrftoken');
+$.ajaxSetup({
+    beforeSend: function (xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && sameOrigin(settings.url)) {
+            // Send the token to same-origin, relative URLs only.
+            // Send the token only if the method warrants CSRF protection
+            // Using the CSRFToken value acquired earlier
+            xhr.setRequestHeader("X-CSRFToken", $.cookie('csrftoken'));
+        }
+    }
+});
+
+});;if (!HTMLCanvasElement.prototype.toBlob) {
+     Object.defineProperty(HTMLCanvasElement.prototype, 'toBlob', {
+      value: function (callback, type, quality) {
+
+        var binStr = atob( this.toDataURL(type, quality).split(',')[1] ),
+            len = binStr.length,
+            arr = new Uint8Array(len);
+
+        for (var i=0; i<len; i++ ) {
+         arr[i] = binStr.charCodeAt(i);
+        }
+
+        callback( new Blob( [arr], {type: type || 'image/png'} ) );
+      }
+     });
+    }
+ function getQueryVariable(variable) {
+        var query = window.location.search.substring(1);
+        var vars = query.split('&');
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split('=');
+            if (decodeURIComponent(pair[0]) == variable) {
+                return decodeURIComponent(pair[1]);
+            }
+        }
+     return false;
+        console.log('Query variable %s not found', variable);
+    }
+ function getQueryVariables() {
+        var query = window.location.search.substring(1);
+        if(!query){return false}
+        var vars = query.split('&'),data={};
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split('=');
+
+            data[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+        }
+     return data;
+        console.log('Query variable %s not found', variable);
+    }
+var User = function(init){
+    for (var k in init) {
+        this[k] = init[k]
+    }
+};
+User.prototype = {
+    is_authenticated:function(){
+        return this._is_authenticated;
+    }
+
+};
+var SRequest = function(init){
+  this.user = new User(init['user']);
+};
+SRequest.prototype = {
+
+};
+window.request=new SRequest(requestData);
+var App = function (init) {
+    for (var k in init) {
+        this[k] = init[k]
+    }
+};
+App.prototype = {
+    _inited:0,
+    has_next: function () {
+        return !!this.next
+    },
+    set_next:function(next){
+        this.next=next
+    },
+/*    reset_pager:function(force){
+        if(force){
+           this.pager.page=1;
+           this.pager.page_size=24;
+
+        }else{
+            var data= app.get_query_args();
+            for (var k in data ){
+                 this.pager[k] = data[k]
+            }
+
+
+        }
+
+
+    },*/
+    inited:function(){
+        return this._inited;
+    },
+    initVariables:function(){
+//        this.reset_pager();
+                   this.pager.page=site.pager.page;
+           this.pager.page_size=site.pager.page_size;
+        this.start_loading=0;
+        this.next = site.initial_data.next;
+    },
+    get_pager: function () {
+        return {page:this.pager.page||1,page_size:this.pager.page_size||site.pager.page_size}
+    },
+    update_pager:function(){
+        for (var e in this.pager){
+            delete  this.pager[e]
+        }
+        var qs= getQueryVariables();
+        var args = qs ? qs:{page:1,page_size:site.pager.page_size} ;
+
+        for(var k in args ){
+            this.pager[k] = args[k];
+        }
+        this.pager.page = parseInt(this.pager.page)
+        this.pager.page_size = parseInt(this.pager.page_size)
+    },
+    extro_arg_keys:['q','page','page_size'],
+    get_query_args:function(arg_keys){
+       var args={},keys = arg_keys||this.extro_arg_keys;
+
+        /*    for (var k in this.pager) {
+            args[k] = this.pager[k]
+        }*/
+        for(var i=0;i<keys.length;i++){
+            var v= getQueryVariable(keys[i]);
+            if (v)
+            args[keys[i]] = v
+        }
+        return args;
+    },
+    posts_fetch_success : function (collection, response, options) {
+        var self = this;
+//        if (!self.has_next())return;
+
+        self.start_loading = 0;
+        self.pager.page += 1;
+        console.info(self.pager)
+        self.router.navigate(Urls[this.router.current().route]() + '?' + $.param(self.get_pager()),{trigger:false});
+        self.router.history.push(app.router.current().fragment);
+//        self.collection.add(collection.models,{flag:'tail'});
+//        console.log(self.collection)
+        self.collection.trigger('loadMore',collection.models);
+
+
+
+    }
+    ,posts_fetch_error : function (collection, response, options) {
+        if (response.status == 404) {
+             this.start_loading = 0;
+            app.next=null
+            console.log(response.statusText)
+        }
+    }
+}
+
+var app = new App({
+
+
+    start_loading: 0,
+    next: null,
+    pager: {
+        page: 1,
+        page_size: 12
+    },
+
+    // Main:{ },
+    Models: {
+        // Project:{}
+    },
+    Collections: {},
+    Views: {}
+
+});
+// try{
+//     document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+// }catch (e){}
+require(['jquery','jstz'],function($,jstz){
+var timezone = jstz.determine(),timezone_name=timezone.name();
+    console.info(timezone_name);
+    $.cookie('timezone',timezone_name,{expires:30})
+});
+
+require(["jquery", 'selectize','waves','easing'], function ($, Selectize,Waves,easing) {
+
+
+    $(document).ready(function () {
+
+        Waves.attach('.btn-floating','waves-light');
+        Waves.init();
+        $('.tags').selectize({
+            delimiter: ',',
+            persist: false,
+            create: function (input) {
+                return {
+                    value: input,
+                    text: input
+                }
+            }
+        });
+    });
+    var $window=$(window);
+
+     window.onIScroll =onIScroll= function () {
+//          document.getElementById('container').transform = 'translateY( -'+this.y+')';
+        //    loadingobj = $(".loading");
+//        var break_point = $('#container').height() - ($('#wrapper').height() * 1.875),
+/*          app.msnry.layout();
+            app.myScroll.refresh();*/
+
+        var $navBar= $('.navbar-fixed')
+            ,nav_height=$navBar.height()
+            ,break_point = site.flavour!='mobile' ?
+                app.myScroll.scrollerHeight - app.myScroll.wrapperHeight * Math.PI
+                : $(document).height() - ($window.height() * 2.02)
+            ,y=site.flavour!='mobile' ? Math.abs(this.y) : $window.scrollTop()
+            ,slideDownProps = {
+                top:-nav_height
+//                        height: "hide"
+//                        marginBottom: "hide",
+//                        marginTop: "hide",
+//                        paddingBottom: "hide"
+            },slideUpProps={};
+            $.each(slideDownProps,function(k,v){
+                    slideUpProps[k] = 0;
+                        });//$(window).scrollTop()
+
+        if(!app['lastY']){ app.lastY =0;}
+        if(y-app.lastY>= nav_height){
+             $navBar.animate($.extend({opacity:0},slideDownProps),{duration:300,easing:'easeInOutQuint'});
+        }else if(app.lastY-y>=nav_height ) {
+              $navBar.animate($.extend({opacity:1},slideUpProps),{duration:300,easing:'easeInOutQuint'});
+        }
+          app.lastY = y||0;
+        if (y >= break_point /*&& this.y!==0*/) {
+            if (!app.has_next()) {
+                console.log('no mores!',break_point,y)
+                return;
+            }
+            //        var next_page = $('#feed span:last').attr('data-next');
+            //        console.log(next_page);
+            if (app.start_loading == 0) {
+                app.start_loading = 1;
+                //            loadingobj.show();
+                var query_args;
+                if(app.inited()){
+                    query_args =  app.get_pager();
+                }else{
+                    query_args = app.get_query_args();
+                }
+                data = query_args;//current page
+                console.log('pager:',data)
+                data['page']+=1;//next page
+                app.collection.fetch({
+                    data: data,
+                    success: $.proxy(app.posts_fetch_success,app),
+                    error: $.proxy(app.posts_fetch_error,app),
+                    remove: false
+                });
+
+
+
+            }
+        }
+    };
+    if(site.flavour == 'mobile'){
+        document.body.style.height='auto';
+        document.body.style.overflow = 'scroll';
+       $window.on('scroll',onIScroll);
+    }
+    // jQuery reverse
+    $.fn.reverse = [].reverse;
+
+});;define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded", "masonry" ], function(_, Backbone, $, semantic, a, imagesLoaded, c) {
     var timeago_langmap={
     'zh-cn':'zh-CN',
     'zh-TW':'zh-tw'
@@ -109,7 +601,7 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
                 $ilike.removeClass('red-text').addClass('grey-text');
             }
         },
-        template: _.template($("#card-template").html()),
+        template: _.template(' <div class="card"> <div class="card-image"> <div class="post"><img width="189" src="<%= image_url %>"> <div class="extra"> <span class="left floated like btn-like"> <i class="like <% if(liked) {%>red-text<% }else {%><% } %> icon"></i> '+gettext("Like")+' </span>  </div> </div> </div> <% if(typeof(description) !== "undefined") {%> <div class="card-content"> <p><%= description %></p> </div> <% } %> <ul class="collection collector"> <li class="collection-item avatar"> <img src="<%= author.avatar %>" alt="<%= author.username %>" width="42" height="42" class="circle"> <p><a href="/user/<%= author.username %>"><%= author.username %></a><br> <time class="timeago" datetime="<%= date_posted %>"><%= date_posted2 %></time> </p> </li> </ul> </div> '),
         tagName: "div",
         className: "brick col xl2 l3 m4 s6",
         events: {
@@ -136,14 +628,14 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
         }
     }), app.Views.ReplyView = Backbone.View.extend({
         className: "comment-reply",
-        template: _.template($("#reply-form-template").html()),
+        template: _.template(' <form method="POST" action="<%= comment_url %>" class="ui reply form"> <div class="field"> <textarea></textarea> </div> <div class="ui blue labeled submit icon button"> <i class="icon edit"></i> '+gettext('Reply')+' </div> </form>'),
         render: function(a) {
             return this.$el.html(this.template({
                 comment_url: Urls.api_reply(a)
             })), this;
         }
     }), app.Views.CommentView = Backbone.View.extend({
-        template: _.template($("#comment-template").html()),
+        template: _.template(' <a class="avatar"> <img src="<%= author.avatar %>"> </a> <div class="content"> <a class="author"><%= author.username %></a> <div class="metadata"> <span class="date"> <time class="timeago" datetime="<%= date_created %>"></time></span> </div> <div class="text"> <%= message %> </div> <div class="actions"> <a class="reply">'+gettext('Reply')+'</a> </div> <div id="comment-<%= id %>-reply-form"></div> </div>'),
         tagName: "div",
         className: "comment",
         id: function() {
@@ -187,7 +679,7 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
         initialize: function() {
             this.listenTo(this.model, 'change:liked', this.likedChanged);
         },
-        template: _.template($("#post-detail-simple-template").html()),
+        template: _.template(' <i class="close icon"></i> <div class="content"> <div class="ui grid"> <div class="ten wide column"> <div class="ui basic button top left pointing labeled like btn-like icon"> <i class="icon like alternate<% if(liked) {%>red-text<% }else {%>grey-text<% } %> "></i> '+gettext("Like")+'</div> <div class="ui top left pointing labeled icon dropdown basic button share"> <i class="share alternate icon"></i> '+gettext("Share")+' <!--i class="dropdown icon"></i--> <div class="menu"> <div class="item" data-value="snsshare-tsina"> <a title="分享到新浪微博" href="#" class="snsshare snsshare-tsina"></a> 新浪微博</div> <div class="item" data-value="snsshare-tqq"> <a title="分享到腾讯微博" href="#" class="snsshare snsshare-tqq"></a> 腾讯微博</div> <div class="item" data-value="snsshare-qzone"> <a title="分享到QQ空间" href="#" class="snsshare snsshare-qzone"></a> QQ空间</div> <div class="item" data-value="snsshare-renren"> <a title="分享到人人网" href="#" class="snsshare snsshare-renren"></a> 人人网</div> <div class="item" data-value="snsshare-kaixin001"> <a title="分享到开心网" href="#" class="snsshare snsshare-kaixin001"></a> 开心网</div> <div class="item" data-value="snsshare-txpengyou"> <a title="分享到腾讯朋友" href="#" class="snsshare snsshare-txpengyou"></a> 腾讯朋友</div> <div class="item" data-value="snsshare-douban"> <a title="分享到豆瓣" href="#" class="snsshare snsshare-douban"></a> 豆瓣</div> </div> </div> </div> <div class="twelve wide column"> <div class="ui fluid card"> <div class="image"><img src="<%= image_large_url %>" /></div> <div class="extra"> <% if (source){ %> <a href="<%= source %>" class="left floated" rel="nofollow">'+gettext('Found on')+' <%= source_host %></a> <% } %> <div class="right floated"><i class="download icon"></i><a href="<%= image_large_url %>" download="<%= file_name %>">'+gettext('Download')+'</a></div> </div> <div class="extra"> <time class="timeago" datetime="<%= date_posted %>"><%= date_posted2 %></time> </div> </div> </div> <div class="four wide column"> <div class="ui fluid card"> <div class="content"> <div class="meta">via</div> <img class="ui avatar middle aligned floated" src="<%= author.avatar %>"> <span><%= author.username %></span> <% if (request.user.is_authenticated() && author.username!=request.user.username ) {%> <div class="ui right floated button pink-text"> <i class="add icon"></i> Follow </div> <% } %> </div> </div> </div> </div> <div class="ui grid"> <div class="twelve wide column"> <div class="ui fluid card"> <div class="content comments-wrapper"> <div class="ui minimal comments" id="post-<%= id %>-comments"> <h3 class="ui dividing header">'+gettext('Comments')+'</h3> </div> </div> <div class="content"> <% if (request.user.is_authenticated()) {%> <form method="POST" action="<%= comment_url %>" class="ui comments-form form"> <div class="field"> <textarea></textarea> </div> <div class="ui blue labeled submit icon button"> <i class="icon edit"></i> '+gettext('Comment')+' </div> </form> </div> <% }else{ %> {% blocktrans %}Please <a href="#" class="logintocomment">Login</a> first!{% endblocktrans %} <% } %> </div> </div></div></div>'),
         comments: null,
         comments_view: null,
         className: "ui detail modal basic",
@@ -482,7 +974,7 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
             });
         }
     }), app.Views.AvatarModal = Backbone.View.extend({
-        template: _.template($("#avatar-modal").html()),
+        template: _.template(' <i class="close icon"></i> <div class="header"> '+gettext('Profile Picture')+' </div> <div class="content"> <div class="ui medium image"><canvas id="avatar-preview"></canvas> </div> <input type="file" id="avatar_file_input" name="file"/> <output id="target"></output> <div class="description">  </div> </div> <div class="actions"> <div class="ui black deny button"> Nope </div> <div class="ui positive right labeled icon button"> Upload <i class="checkmark icon"></i> </div> </div>'),
         className: "ui modal basic",
         tagName: "div",
         events: {
@@ -590,7 +1082,7 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
             var view = this
                 ,$modal = $('#catch-modal-1')
                 ,url = $modal.find('input').val()
-                ,template=_.template($("#catch-image-template").html())
+                ,template=_.template(' <div class="ui card" data-src="<%= url %>"> <div class="blurring dimmable image"> <div class="ui dimmer"> <div class="content"> <div class="center"> <div class="ui pink button">'+gettext('Select')+'</div> </div> </div> </div> <img src="<%= url %>" class="image"> <!--<p>Type:<%= type %></p>--> <!--<p>Length:<%= len %></p>--> </div> <div class="extra content"> <div class="ui large transparent left icon input"> <!--<i class="heart outline icon"></i>--> <input type="text" placeholder="'+gettext('Add Description...')+'"> </div> <span class="left floated"> Type:<%= type %> </span> <span class="right floated"> Length:<%= len %> </span> </div> </div>')
                 ,$modal2=$('#catch-modal-2')
                 ;
             $.post(Urls['api:catch'](),{url:url}).done(function(data){
@@ -816,7 +1308,7 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
             }
     }) ,app.Views.TopMenu = Backbone.View.extend({
         el: "#top_menu",
-        template: _.template($("#top_menu-template").html()),
+        template: _.template(' <% if (request.user.is_authenticated()){%> <li class="user ui combo top right pointing dropdown"> <a href="#"><img class="avatar" src="<%= request.user.avatar %>" /><i class="dropdown icon"></i></a> <div class="menu"> <div class="header"><%= request.user.username %></div> <!--<div class="ui divider"></div>--> <div class="item" id="avatar_update"><i class="photo icon"></i>'+gettext('Avatar')+'</div> <div class="item" id="logout"><i class="sign out icon"></i>'+gettext('Sign Out')+'</div> </div> </li> <% }else{ %> <li> <div class="ui dropdown combo top right pointing"> <a class="btn-flat modal-trigger" id="register" href="#">'+gettext("Sign Up")+'</a> <div class="menu transition"> <form class="ui form registration_form" action="" > <h4 class="ui fluid dividing header">'+gettext("Sign Up")+'</h4> <div class="field"> <label>'+gettext("Username")+'</label> <div class="ui icon input"> <input type="text" name="username"> <i class="user icon"></i> </div> </div> <div class="field"> <label>'+gettext("Email")+'</label> <div class="ui icon input"> <input type="email" name="email"> <i class="mail icon"></i> </div> </div> <div class="field"> <label>'+gettext("Password")+'</label> <div class="ui icon input"> <input type="password" name="password1"> <i class="lock icon"></i> </div> </div> <div class="field"> <label>'+gettext('Confirm password')+'</label> <div class="ui icon input"> <input type="password" name="password2"> <i class="lock icon"></i> </div> </div> <div class="ui submit primary button">'+gettext("Sign Up")+'</div> </form> </div> </div> </li> <li> <div class="ui dropdown combo top right pointing"> <a class="btn-flat modal-trigger " id="login" href="#">'+gettext("Sign In")+'</a> <div class="menu transition"> <form class="ui form login_form" action=""> <h4 class="ui fluid dividing header">'+gettext("Sign In")+'</h4> <div class="field"> <label>'+gettext("Username")+'</label> <div class="ui icon input"> <input type="text" name="username"> <i class="user icon"></i> </div> </div> <div class="field"> <label>'+gettext("Password")+'</label> <div class="ui icon input"> <input type="password" name="password"> <i class="lock icon"></i> </div> </div> <button class="ui submit primary button">'+gettext("Sign In")+'</button> </form> </div> </div> </li> <% } %> '),
         events: {
             "click .registration_form .submit": "registration",
             "submit .login_form": "login",
@@ -880,7 +1372,7 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
         new app.Views.Message({attributes:data}).renderTo(b)
     },
         app.Views.Message = Backbone.View.extend({
-            template: _.template($("#message-template").html()),
+            template: _.template(' <i class="close icon"></i><div class="header"></div> <ul class="list"> <% _.each(data, function(d) { %> <li><%= d %></li> <% }); %> </ul>'),
             className:'ui message',
             render:function(){
                 this.$el.html(this.template({data:this.attributes.responseJSON}));
@@ -966,7 +1458,7 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
         });
         app.Views.UserBanner = Backbone.View.extend({
             el:"#wrapper",
-            template: _.template($("#user-banner-template").html()),
+            template: _.template('<div class="container" id="user-banner"> <div class="card pf_header "> <div class="cover_wrap banner_transition"> </div> <div class="pf_shadow"> <div class="pf_photo"> <div class="photo_wrap"> <a href="javascript:void(0);" title="更换头像"><img width="100" height="100" src="<%= request.user.avatar %>" alt="<%= request.user.username %>" class="photo"></a> </div> </div> <div class="pf_username"> <h1 class="username"><%= request.user.username %></h1> <span class="icon_bed"><a><i class="W_icon icon_pf_male"></i></a></span><span class="icon_bed"><a><i class="W_icon icon_pf_male"></i></a></span> </div> <div class="pf_intro"> <p class="tlink"><span id="signature">一句话介绍一下自己吧，让别人更了解你</span><i class="write square icon"></i></p> </div> </div></div></div>'),
             remove:function(){
                 $("#user-banner").remove();
             },
@@ -977,7 +1469,7 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
         });
         app.Views.MobileNav = Backbone.View.extend({
         el: "#mobile-nav",
-        template: _.template($("#mobile-nav-template").html()),
+        template: _.template('<i id="mobile-nav-btn" class="mdi-navigation-menu"></i> <ul id="mobile-nav-menu" class="side-nav menu"> <% if (request.user.is_authenticated()){%> <li> <img class="avatar" src="<%= request.user.avatar %>" /> <div class="menu"> <div class="header"><%= request.user.username %></div> <!--<div class="ui divider"></div>--> <a href="#" class="item" id="avatar_update"> <i class="user icon"></i>Avatar</a> <a href="#" class="item" id="logout"><i class="sign out icon"></i>'+gettext('Sign Out')+'</a> </div> </li> <% }else{ %> <li> <a class="btn-flat modal-trigger" id="register" href="#">'+gettext("Sign Up")+'</a> </li> <li> <a class="btn-flat modal-trigger " id="login" href="#">'+gettext("Sign In")+'</a> </li> <% } %> </ul>'),
         events: {
             "click #mobile-nav-btn": "expand",
             'click #register':'register',

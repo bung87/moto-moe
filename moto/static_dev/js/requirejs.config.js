@@ -25,7 +25,8 @@ requirejs.config({
         'waves':'waves.min',
         'jstz':'jstz.min',
         'lodash':'lodash.min',
-        'easing':'jquery.easing.min'
+        'easing':'jquery.easing.min',
+        'editable':'jquery.editable.min'
         // 'mustache':'mustache'
     },
     //Remember: only use shim config for non-AMD scripts,
@@ -64,6 +65,9 @@ requirejs.config({
             deps: [ "jquery" ]
         },
         'timeago':{
+          deps:['jquery']
+        },
+        'editable':{
           deps:['jquery']
         },
 //        'backbone-tastypie': {

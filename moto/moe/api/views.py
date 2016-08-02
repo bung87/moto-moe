@@ -164,6 +164,12 @@ class UserList(ListCreateAPIView):
     queryset = USER_MODEL.objects.all()
     serializer_class = UserDetailSerializer
 
+class UserProfile(RetrieveUpdateDestroyAPIView):
+    model = USER_MODEL
+    queryset = USER_MODEL.objects.all()
+    serializer_class = UserDetailSerializer
+    lookup_field = "username"
+
 class UserDetail(RetrieveUpdateDestroyAPIView):
     # model = USER_MODEL
     # queryset = USER_MODEL.objects.all()

@@ -280,6 +280,8 @@ STATICFILES_DIRS = (
 
 if DEBUG :
     STATICFILES_DIRS+= (os.path.join(BASE_DIR, "static_dev"),)
+    # STATICFILES_DIRS+= (os.path.join(BASE_DIR, "bower_components/**"),)
+    
 STATIC_ROOT = os.path.join(BASE_DIR, "assets")
 
 MEDIA_URL = '/media/'

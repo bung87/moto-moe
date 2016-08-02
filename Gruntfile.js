@@ -147,7 +147,7 @@ module.exports = function (grunt) {
                 ,'jquery-timeago/jquery.timeago.js': 'jquery-timeago/jquery.timeago.js'
                 ,'jquery-timeago/locales/':'jquery-timeago/locales/' 
                 ,'jquery.easing.min.js':'jquery.easing/js/jquery.easing.min.js'
-               
+                ,'jquery.editable.min.js':'jQuery.editable/jquery.editable.min.js'
                 }
             },
             css:{

@@ -58,3 +58,4 @@ class Board(models.Model):
                                 verbose_name=_('date posted'))
 class User(AbstractUser):
     avatar = models.ImageField(upload_to='avatars')
+    signature = models.CharField(max_length=240,default='')
