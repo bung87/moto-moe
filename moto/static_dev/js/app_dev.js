@@ -121,8 +121,8 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
         },
         like: likeit,
         postDetail: function(a) {
-            if(app.router.current().route == "post_detail") return;
-            a.preventDefault(), a.stopImmediatePropagation(), app.router.navigate(this.model.detail_url(), {
+            if(app.router.current().route == "post_detail" || document.body.className.indexOf("dimmed")>-1) return;
+             a.stopImmediatePropagation(), app.router.navigate(this.model.detail_url(), {
                 trigger: !0
             });
         },
