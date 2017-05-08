@@ -58,6 +58,8 @@ INSTALLED_APPS = (
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+
+     'allauth.socialaccount.providers.github',
     'rest_auth',
     'rest_auth.registration',
     'taggit',

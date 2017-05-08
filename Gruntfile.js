@@ -114,7 +114,7 @@ module.exports = function (grunt) {
           },
           target: {
             files: {
-              'moto/static/semantic/semantic.min.css': 'moto/static/semantic/semantic.css',
+            //   'moto/static/semantic/semantic.min.css': 'moto/static/semantic/semantic.css',
               'moto/static/jquery.snsshare.js/css/style.min.css': 'moto/static/jquery.snsshare.js/css/style.css'
               // 'moto/static/selectize.js-0.12.1/dist/css/selectize.bootstrap3.min.css': 'moto/static/selectize.js-0.12.1/dist/css/selectize.bootstrap3.css'
             }
@@ -158,8 +158,9 @@ module.exports = function (grunt) {
                     'waves.css':'waves/dist/waves.css'
                     ,'Jcrop.css':'jcrop/css/Jcrop.css'
                     ,'Jcrop.gif':'jcrop/css/Jcrop.gif'
-                    ,'themes':'semantic/dist/themes'
-                    ,'semantic.min.css': 'semantic/dist/semantic.min.css'
+                    ,'semantic':'semantic/dist/'
+                    // ,'semantic.min.css': 'semantic/dist/semantic.min.css'
+                    // ,'semantic.css': 'semantic/dist/semantic.css'
                 }
             },
             plugins:{

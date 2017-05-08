@@ -1,0 +1,27 @@
+{% load i18n account socialaccount %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Remove Tap Highlight on Windows Phone IE -->
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="theme-color" content="#f48fb1">
+    <title>{% block head_title %}{% trans "Account" %}{% endblock %} - 元萌</title>
+    <link rel="shortcut icon" href="{{STATIC_URL}}favicon.ico" type="image/x-icon">
+    <!-- Compiled and minified CSS -->
+    {% ifequal debug True %}
+    <!--<link rel="stylesheet" href="{{STATIC_URL}}semantic/semantic.css">
+    <link rel="stylesheet" href="{{STATIC_URL}}css/styles.css?v=dsf">-->
+    <!--<link rel="stylesheet" href="https://imperavi.com/assets/css/kube.css">-->
+    {% else %}
+     <!--<link rel="stylesheet" href="{{STATIC_URL}}css/styles.min.css?v=1">-->
+    {% endifequal %}
+</head>
+<body>
+{% block content %}
+
+{% endblock %}
+</body>
+</html>
