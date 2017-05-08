@@ -1225,8 +1225,13 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
                     $(".global.dimmer").dimmer("hide");
                 });
              }else{
-                // $("#post-detail-"+d.attributes.id).modal("hide");//may click detail twice
-                d.render().$el.modal('show');
+                 var $modal = $("#post-detail-"+d.attributes.id);
+                 if($modal.length){
+                     $modal.modal("show")
+                 }else{
+                    d.render().$el.modal('show');
+                 }
+                
             }
         },
         user_detail: function(a) {
