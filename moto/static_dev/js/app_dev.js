@@ -192,6 +192,9 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
         comments_view: null,
         className: "ui detail modal basic",
         tagName: "div",
+        id: function() {
+            return "post-detail-" + this.model.attributes.id;
+        },
         events: {
             "click .btn-like": "like",
             "click button.visit": "visit",
@@ -1221,7 +1224,7 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
                     $(".global.dimmer").dimmer("hide");
                 });
              }else{
-                $(".modals").modal("hide");//may click detail twice
+                $("#post-detail-"+d.attributes.id).modal("hide");//may click detail twice
                 d.render().$el.modal('show');
             }
         },
