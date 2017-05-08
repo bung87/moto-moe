@@ -253,7 +253,7 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
             this.$el.html(this.template(this.model.toJSON()));
             this.$el.modal({
                 autofocus: !1
-                    ,onHidden: function() {
+                ,onHidden: function() {
                     app.router.previous();
 
                        try{
@@ -283,6 +283,7 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
 
                     })
                 }
+               
             });
 
             require([timeago_lang],function(){
@@ -1225,12 +1226,12 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
                     $(".global.dimmer").dimmer("hide");
                 });
              }else{
-                 var $modal = $("#post-detail-"+d.attributes.id);
-                 if($modal.length){
-                     $modal.modal("show")
-                 }else{
+                //  var $modal = $("#post-detail-"+d.attributes.id);
+                //  if($modal.length){
+                //      $modal.modal("show")
+                //  }else{
                     d.render().$el.modal('show');
-                 }
+                //  }
                 
             }
         },

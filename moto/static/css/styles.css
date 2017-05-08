@@ -464,7 +464,7 @@ float: left;
 }
 /*@media only screen and (max-width: 992px){*/
     .modal > .close {
-      color: inherit !important;
+      /*color: inherit !important;*/
     }
 /*}*/
 nav .brand-logo {
@@ -916,8 +916,15 @@ color: #ff1744 !important;
     cursor: zoom-out;
 }
 .ui.modal{
+  
     /*cursor: pointer;*/
     cursor: auto;
+}
+.detail.modal{
+  background: #FFf !important;
+}
+.detail.modal .close.icon {
+    color: #aaa;
 }
 .card .post{
     cursor: pointer;
