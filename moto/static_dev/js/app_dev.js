@@ -1217,10 +1217,11 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
 //                        d.bindEvents();
                     });
                 }
-            }).always(function(a, b, c) {
-                $(".global.dimmer").dimmer("hide");
-            });
+                }).always(function(a, b, c) {
+                    $(".global.dimmer").dimmer("hide");
+                });
              }else{
+                $(".modals").modal("hide");//may click detail twice
                 d.render().$el.modal('show');
             }
         },
