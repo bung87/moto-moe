@@ -294,7 +294,7 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
                 var title = " 我在［元萌］捕获萌妹一只，邀你一起来把玩！";
                 view.$el.snsshare({
                     title: title,
-                    images: window.location.protocol+'//'+window.location.hostname+view.model.attributes.image_url,
+                    images: view.model.attributes.image_url,
                     url: document.location.href,
                     site_url: document.location.origin,
                     windowWidth: 800,

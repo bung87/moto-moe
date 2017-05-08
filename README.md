@@ -50,7 +50,7 @@ if you're on Ubuntu 14.04, also install this
     #follow Data migration 
     npm install && bower install
     grunt #build static files
-    PYTHONPATH=./ python moto/manage.py runserver
+    ./manage.py runserver
 
 ```
 ## Deployment
