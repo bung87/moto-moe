@@ -121,6 +121,7 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
         },
         like: likeit,
         postDetail: function(a) {
+            if(app.router.current().route == "post_detail") return;
             a.preventDefault(), a.stopImmediatePropagation(), app.router.navigate(this.model.detail_url(), {
                 trigger: !0
             });
@@ -1224,7 +1225,7 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
                     $(".global.dimmer").dimmer("hide");
                 });
              }else{
-                $("#post-detail-"+d.attributes.id).modal("hide");//may click detail twice
+                // $("#post-detail-"+d.attributes.id).modal("hide");//may click detail twice
                 d.render().$el.modal('show');
             }
         },
