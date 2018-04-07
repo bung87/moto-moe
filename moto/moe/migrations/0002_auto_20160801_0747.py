@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('auth', '0006_require_contenttypes_0002'),
-        ('taggit', '0002_auto_20150616_2121'),
+        # ('taggit', '0002_auto_20150616_2121'),
         ('moe', '0001_initial'),
     ]
 
