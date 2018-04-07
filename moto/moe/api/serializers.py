@@ -48,7 +48,7 @@ class UserDetailSerializer(UserBaseSerializer):
     class Meta(UserBaseSerializer.Meta):
         model = get_user_model()
         allowed_methods = ('get', 'post', 'put')
-        fields = ['username', 'name','avatar','email','_is_authenticated']
+        fields = ['username', 'name','avatar','email','_is_authenticated','signature']
         excludes = [ 'password', 'is_active', 'is_staff', 'is_superuser']
 
 class UserSerializer(UserBaseSerializer):
