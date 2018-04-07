@@ -269,7 +269,7 @@ define([ "lodash", "backbone", "jquery", "semantic",  "timeago", "imagesloaded",
                            //do nothing
                            console.error(e)
                        }
-                       $(".ui.dimmer.modals").removeClass("active visible")
+                       $(".ui.dimmer.modals").removeClass("active visible").addClass('hidden')
                 }
                 ,onVisible:function(){
                    site.flavour!='mobile'&& require(['iscroll'],function(IScroll){
