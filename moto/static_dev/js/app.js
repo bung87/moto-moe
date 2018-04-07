@@ -412,10 +412,10 @@ require([ "jquery", "jstz" ], function($, a) {
         },
         like: e,
         postDetail: function(a) {
-            a.preventDefault(), a.stopImmediatePropagation(), 
+            "post_detail" == app.router.current().route || document.body.className.indexOf("dimmed") > -1 || (a.stopImmediatePropagation(), 
             app.router.navigate(this.model.detail_url(), {
                 trigger: !0
-            });
+            }));
         },
         render: function() {
             this.$el.html(this.template(this.model.attributes));
@@ -479,6 +479,9 @@ require([ "jquery", "jstz" ], function($, a) {
         comments_view: null,
         className: "ui detail modal basic",
         tagName: "div",
+        id: function() {
+            return "post-detail-" + this.model.attributes.id;
+        },
         events: {
             "click .btn-like": "like",
             "click button.visit": "visit",
@@ -562,7 +565,7 @@ require([ "jquery", "jstz" ], function($, a) {
                 var c = " 我在［元萌］捕获萌妹一只，邀你一起来把玩！";
                 b.$el.snsshare({
                     title: c,
-                    images: window.location.protocol + "//" + window.location.hostname + b.model.attributes.image_url,
+                    images: b.model.attributes.image_url,
                     url: document.location.href,
                     site_url: document.location.origin,
                     windowWidth: 800,
