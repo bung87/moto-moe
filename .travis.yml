@@ -4,8 +4,7 @@ python:
   - "3.3"
   - "3.4"
 env:
-  - PYTHONPATH=./
-  - DJANGO_SETTINGS_MODULE='moto.moe.settings'
+  - DJANGO_SETTINGS_MODULE='moto.moe.settings' PYTHONPATH=./
 services:
   - redis-server
 install:
