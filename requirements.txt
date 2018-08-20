@@ -14,9 +14,9 @@ shortuuid==0.4.2
 
 #from link
 #django-haystack-rqueue==0.2.1a0
-django-taggit==0.15.0
+django-taggit==0.22.2
 Whoosh==2.7.0
-#django-comments-threaded==1.0.0
+django-comments-threaded==1.0.0
 gunicorn==19.3.0
 django-redis-sessions==0.5.0
 beautifulsoup4==4.4.0
@@ -26,3 +26,4 @@ aiohttp==0.16.6
 #django-mobile==0.5.0
 #django-rq==0.8.0
 pytz==2016.4
+django-mptt==0.9.0

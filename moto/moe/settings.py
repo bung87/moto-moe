@@ -169,7 +169,7 @@ ACCOUNT_UNIQUE_EMAIL = True
 #     'signup':'moe_auth.auth.forms.SignupForm'
 # }
 REST_SESSION_LOGIN = True
-AUTH_USER_MODEL = 'moto.moe.User'
+AUTH_USER_MODEL = 'moe.User'
 ROOT_URLCONF = 'moto.moe.urls'
 
 TEMPLATES = [
