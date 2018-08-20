@@ -1,9 +1,10 @@
 language: python
 python:
-  - "3.2"
+  # - "3.2"
   - "3.3"
   - "3.4"
 env:
+  - PYTHONPATH=./
   - DJANGO_SETTINGS_MODULE='moto.moe.settings'
 services:
   - redis-server
