@@ -2,3 +2,4 @@
 git+https://github.com/bung87/django-js-reverse
 git+https://github.com/bung87/haystack-rqueue
 git+https://github.com/bung87/django-mobile
+git+https://github.com/marazmiki/django-comments-threaded#egg=django-comments-threaded
