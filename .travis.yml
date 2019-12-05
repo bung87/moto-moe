@@ -7,6 +7,7 @@ env:
   - PYTHONPATH=./ DJANGO_SETTINGS_MODULE='moto.moe.settings'
 services:
   - redis-server
+  - mysql
 before_install:
   - sudo apt-get -y install build-essential
   - sudo apt-get install python-dev libmysqlclient-dev
