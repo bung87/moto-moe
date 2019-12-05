@@ -1,6 +1,13 @@
 # 元萌 [![Build Status](https://travis-ci.org/bung87/moto-moe.svg?branch=master)](https://travis-ci.org/bung87/moto-moe)
 ![brower preview](artwork.png)  
 
+## features  
+ * Single page application, but also server side render as same as frontend's url routes
+ * Single version templates support both frontend and backend.
+ * i18n support, single version i18n file support both frontend and backend.
+ * with Whoosh support fullTextSearch
+ * Implemented async crawer  `moe.utils.crawer.py` support Pixiv and Seiga
+
 ## Technology stack
 * [Django](https://www.djangoproject.com/)
 * [Backbone.js](http://backbonejs.org/) ([lodash](https://lodash.com/) as dependency)
