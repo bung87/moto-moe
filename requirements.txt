@@ -1,4 +1,4 @@
-Django==1.8.3
+Django==1.11.23
 #django-allauth==0.21.0
 #https://github.com/pennersr/django-allauth/issues/1076
 django-allauth==0.23.0
