@@ -20,7 +20,7 @@ Whoosh==2.7.0
 gunicorn==19.3.0
 django-redis-sessions==0.5.0
 beautifulsoup4==4.4.0
-lxml==3.4.4
+lxml==4.6.2
 #Twisted==15.2.1
 aiohttp==0.16.6
 #django-mobile==0.5.0
