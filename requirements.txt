@@ -22,7 +22,7 @@ django-redis-sessions==0.5.0
 beautifulsoup4==4.4.0
 lxml==3.4.4
 #Twisted==15.2.1
-aiohttp==0.16.6
+aiohttp==3.7.4
 #django-mobile==0.5.0
 #django-rq==0.8.0
 pytz==2016.4
